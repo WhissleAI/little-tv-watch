@@ -1,0 +1,138 @@
+{
+ "id": "nba_nop_nyk",
+ "sport": "nba",
+ "title": "Knicks at Pelicans",
+ "subtitle": "MSG · a back-and-forth finish",
+ "start": 0,
+ "duration": 360.0,
+ "layout": {
+  "clock": [
+   0.036,
+   0.796,
+   0.08,
+   0.83
+  ],
+  "period": [
+   0.032,
+   0.838,
+   0.056,
+   0.874
+  ],
+  "a_name": [
+   0.146,
+   0.795,
+   0.184,
+   0.829
+  ],
+  "a": [
+   0.188,
+   0.795,
+   0.23,
+   0.829
+  ],
+  "b_name": [
+   0.146,
+   0.839,
+   0.184,
+   0.876
+  ],
+  "b": [
+   0.192,
+   0.839,
+   0.229,
+   0.876
+  ]
+ },
+ "teams": [
+  "NYK",
+  "NO"
+ ],
+ "roster": "New York Knicks|team|Knicks,New York\nJalen Brunson|person|Brunson\nKarl-Anthony Towns|person|Towns,KAT\nOG Anunoby|person|Anunoby,OG\nMikal Bridges|person|Bridges\nJosh Hart|person|Hart\nMitchell Robinson|person|Robinson\nMiles McBride|person|McBride,Deuce\nJordan Clarkson|person|Clarkson\nMike Brown|person|Mike Brown\nNew Orleans Pelicans|team|Pelicans,New Orleans\nZion Williamson|person|Zion,Williamson\nTrey Murphy III|person|Trey Murphy,Murphy\nJordan Poole|person|Poole\nHerbert Jones|person|Herb Jones\nDerik Queen|person|Queen\nJeremiah Fears|person|Fears\nYves Missi|person|Missi\nSaddiq Bey|person|Bey",
+ "board_changes": [
+  {
+   "t": 62,
+   "score": [
+    120,
+    119
+   ]
+  },
+  {
+   "t": 76,
+   "score": [
+    120,
+    121
+   ]
+  },
+  {
+   "t": 105,
+   "score": [
+    122,
+    121
+   ]
+  },
+  {
+   "t": 161,
+   "score": [
+    124,
+    121
+   ]
+  },
+  {
+   "t": 237,
+   "score": [
+    124,
+    122
+   ]
+  },
+  {
+   "t": 245,
+   "score": [
+    124,
+    123
+   ]
+  },
+  {
+   "t": 263,
+   "score": [
+    126,
+    123
+   ]
+  },
+  {
+   "t": 276,
+   "score": [
+    126,
+    125
+   ]
+  },
+  {
+   "t": 303,
+   "score": [
+    127,
+    125
+   ]
+  },
+  {
+   "t": 311,
+   "score": [
+    128,
+    125
+   ]
+  },
+  {
+   "t": 342,
+   "score": [
+    129,
+    125
+   ]
+  },
+  {
+   "t": 350,
+   "score": [
+    130,
+    125
+   ]
+  }
+ ],
+ "broadcaster": "MSG Network"
+}

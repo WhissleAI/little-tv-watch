@@ -1,0 +1,259 @@
+{
+ "id": "nba_min_sas",
+ "sport": "nba",
+ "title": "Timberwolves at Spurs",
+ "subtitle": "FanDuel SN · 3rd quarter to the final horn",
+ "start": 0,
+ "duration": 306.0,
+ "layout": {
+  "a": [
+   0.372,
+   0.862,
+   0.43,
+   0.925
+  ],
+  "period": [
+   0.441,
+   0.872,
+   0.47,
+   0.905
+  ],
+  "clock": [
+   0.476,
+   0.868,
+   0.526,
+   0.918
+  ],
+  "b": [
+   0.568,
+   0.866,
+   0.62,
+   0.92
+  ]
+ },
+ "teams": [
+  "MIN",
+  "SAS"
+ ],
+ "roster": "Minnesota Timberwolves|team|Timberwolves,Wolves,Minnesota\nAnthony Edwards|person|Edwards,Ant\nJulius Randle|person|Randle\nRudy Gobert|person|Gobert\nJaden McDaniels|person|McDaniels\nDonte DiVincenzo|person|DiVincenzo\nNaz Reid|person|Naz,Reid\nMike Conley|person|Conley\nSan Antonio Spurs|team|Spurs,San Antonio\nVictor Wembanyama|person|Wembanyama,Wemby\nDe'Aaron Fox|person|Fox\nStephon Castle|person|Castle\nDevin Vassell|person|Vassell\nHarrison Barnes|person|Barnes\nKeldon Johnson|person|Keldon\nDylan Harper|person|Harper\nJeremy Sochan|person|Sochan\nMitch Johnson|person|Mitch Johnson",
+ "board_changes": [
+  {
+   "t": 14,
+   "score": [
+    81,
+    86
+   ]
+  },
+  {
+   "t": 18,
+   "score": [
+    81,
+    89
+   ]
+  },
+  {
+   "t": 28,
+   "score": [
+    81,
+    91
+   ]
+  },
+  {
+   "t": 40,
+   "score": [
+    83,
+    91
+   ]
+  },
+  {
+   "t": 59,
+   "score": [
+    88,
+    91
+   ]
+  },
+  {
+   "t": 65,
+   "score": [
+    88,
+    93
+   ]
+  },
+  {
+   "t": 77,
+   "score": [
+    88,
+    96
+   ]
+  },
+  {
+   "t": 83,
+   "score": [
+    88,
+    98
+   ]
+  },
+  {
+   "t": 93,
+   "score": [
+    88,
+    100
+   ]
+  },
+  {
+   "t": 95,
+   "score": [
+    88,
+    101
+   ]
+  },
+  {
+   "t": 103,
+   "score": [
+    91,
+    101
+   ]
+  },
+  {
+   "t": 111,
+   "score": [
+    91,
+    103
+   ]
+  },
+  {
+   "t": 114,
+   "score": [
+    93,
+    103
+   ]
+  },
+  {
+   "t": 123,
+   "score": [
+    95,
+    103
+   ]
+  },
+  {
+   "t": 131,
+   "score": [
+    95,
+    105
+   ]
+  },
+  {
+   "t": 132,
+   "score": [
+    97,
+    105
+   ]
+  },
+  {
+   "t": 139,
+   "score": [
+    99,
+    105
+   ]
+  },
+  {
+   "t": 149,
+   "score": [
+    101,
+    105
+   ]
+  },
+  {
+   "t": 161,
+   "score": [
+    101,
+    107
+   ]
+  },
+  {
+   "t": 168,
+   "score": [
+    101,
+    109
+   ]
+  },
+  {
+   "t": 171,
+   "score": [
+    103,
+    109
+   ]
+  },
+  {
+   "t": 179,
+   "score": [
+    103,
+    111
+   ]
+  },
+  {
+   "t": 194,
+   "score": [
+    105,
+    111
+   ]
+  },
+  {
+   "t": 199,
+   "score": [
+    105,
+    113
+   ]
+  },
+  {
+   "t": 210,
+   "score": [
+    107,
+    113
+   ]
+  },
+  {
+   "t": 220,
+   "score": [
+    107,
+    115
+   ]
+  },
+  {
+   "t": 238,
+   "score": [
+    107,
+    118
+   ]
+  },
+  {
+   "t": 247,
+   "score": [
+    109,
+    118
+   ]
+  },
+  {
+   "t": 258,
+   "score": [
+    111,
+    118
+   ]
+  },
+  {
+   "t": 260,
+   "score": [
+    111,
+    119
+   ]
+  },
+  {
+   "t": 264,
+   "score": [
+    111,
+    121
+   ]
+  }
+ ],
+ "broadcaster": "FanDuel Sports Network"
+}

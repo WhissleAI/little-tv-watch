@@ -1,0 +1,229 @@
+[
+ {
+  "id": "nba1",
+  "domain": "nba",
+  "text": "Stephen Curry pulls up from thirty feet and buries it. The Warriors lead the Lakers 88 to 85 with four minutes left in the third quarter.",
+  "score": [
+   88,
+   85
+  ],
+  "clock": 240,
+  "names": [
+   "Stephen Curry",
+   "Golden State Warriors",
+   "Los Angeles Lakers"
+  ],
+  "alerts": [
+   "score",
+   "curry",
+   "close"
+  ]
+ },
+ {
+  "id": "nba2",
+  "domain": "nba",
+  "text": "LeBron James drives baseline, and finishes with the left hand. That cuts it to 101 to 99, one minute twenty to play.",
+  "score": [
+   101,
+   99
+  ],
+  "clock": 80,
+  "names": [
+   "LeBron James"
+  ],
+  "alerts": [
+   "score",
+   "close",
+   "crunch"
+  ]
+ },
+ {
+  "id": "nba3",
+  "domain": "nba",
+  "text": "Timeout on the floor. Golden State has scored eight straight, and the Lakers coach is not happy at all.",
+  "score": null,
+  "clock": null,
+  "names": [
+   "Golden State Warriors",
+   "Los Angeles Lakers"
+  ],
+  "alerts": [
+   "timeout"
+  ]
+ },
+ {
+  "id": "nba4",
+  "domain": "nba",
+  "text": "Anthony Davis with the block! The Lakers take the lead, 104 to 103, with forty two seconds remaining.",
+  "score": [
+   104,
+   103
+  ],
+  "clock": 42,
+  "names": [
+   "Anthony Davis",
+   "Los Angeles Lakers"
+  ],
+  "alerts": [
+   "score",
+   "close",
+   "crunch"
+  ]
+ },
+ {
+  "id": "nba5",
+  "domain": "nba",
+  "text": "Welcome back to Chase Center, where tonight's crowd is the biggest of the season.",
+  "score": null,
+  "clock": null,
+  "names": [],
+  "alerts": []
+ },
+ {
+  "id": "nba6",
+  "domain": "nba",
+  "text": "Draymond Green picks up his fourth foul, and he will head to the bench for the rest of the quarter.",
+  "score": null,
+  "clock": null,
+  "names": [
+   "Draymond Green"
+  ],
+  "alerts": []
+ },
+ {
+  "id": "soc1",
+  "domain": "soccer",
+  "text": "Saka cuts inside, shoots, and it's a goal! Arsenal lead Chelsea two to one in the seventy eighth minute.",
+  "score": [
+   2,
+   1
+  ],
+  "minute": 78,
+  "names": [
+   "Bukayo Saka",
+   "Arsenal",
+   "Chelsea"
+  ],
+  "alerts": [
+   "score",
+   "goal"
+  ]
+ },
+ {
+  "id": "soc2",
+  "domain": "soccer",
+  "text": "That's a red card for Chelsea! They will have to play the final ten minutes with ten men.",
+  "score": null,
+  "minute": null,
+  "names": [
+   "Chelsea"
+  ],
+  "alerts": [
+   "cards"
+  ]
+ },
+ {
+  "id": "soc3",
+  "domain": "soccer",
+  "text": "The goalkeeper gathers it comfortably, and Arsenal will look to build from the back.",
+  "score": null,
+  "minute": null,
+  "names": [
+   "Arsenal"
+  ],
+  "alerts": []
+ },
+ {
+  "id": "soc4",
+  "domain": "soccer",
+  "text": "Into the ninetieth minute now, and there will be four minutes of added time. Still one nil to Arsenal.",
+  "score": [
+   1,
+   0
+  ],
+  "minute": 90,
+  "names": [
+   "Arsenal"
+  ],
+  "alerts": [
+   "score",
+   "crunch"
+  ]
+ },
+ {
+  "id": "nfl1",
+  "domain": "nfl",
+  "text": "Mahomes finds Kelce in the end zone, touchdown Kansas City! The Chiefs lead the Bills 24 to 20.",
+  "score": [
+   24,
+   20
+  ],
+  "clock": null,
+  "names": [
+   "Patrick Mahomes",
+   "Travis Kelce",
+   "Kansas City Chiefs",
+   "Buffalo Bills"
+  ],
+  "alerts": [
+   "score",
+   "td"
+  ]
+ },
+ {
+  "id": "nfl2",
+  "domain": "nfl",
+  "text": "Josh Allen is picked off! Interception at the forty yard line, with one minute fifty left in the game.",
+  "score": null,
+  "clock": 110,
+  "names": [
+   "Josh Allen"
+  ],
+  "alerts": [
+   "turnover",
+   "crunch"
+  ]
+ },
+ {
+  "id": "nfl3",
+  "domain": "nfl",
+  "text": "The Bills will settle for a field goal attempt from thirty eight yards out.",
+  "score": null,
+  "clock": null,
+  "names": [
+   "Buffalo Bills"
+  ],
+  "alerts": [
+   "fg"
+  ]
+ },
+ {
+  "id": "news1",
+  "domain": "news",
+  "text": "Breaking news this evening: a magnitude five earthquake has been reported near San Jose, California.",
+  "score": null,
+  "clock": null,
+  "names": [],
+  "alerts": [
+   "breaking"
+  ]
+ },
+ {
+  "id": "news2",
+  "domain": "news",
+  "text": "In business news, shares of Nvidia rose four percent after the company reported record quarterly earnings.",
+  "score": null,
+  "clock": null,
+  "names": [],
+  "alerts": []
+ },
+ {
+  "id": "news3",
+  "domain": "news",
+  "text": "The weather in Redwood City tomorrow will be sunny, with a high of seventy two degrees.",
+  "score": null,
+  "clock": null,
+  "names": [],
+  "alerts": []
+ }
+]

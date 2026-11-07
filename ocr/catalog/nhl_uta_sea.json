@@ -1,0 +1,85 @@
+{
+ "id": "nhl_uta_sea",
+ "sport": "nhl",
+ "title": "Mammoth at Kraken",
+ "subtitle": "Utah storm back from 0-2",
+ "start": 0,
+ "duration": 340,
+ "layout": {
+  "period": [
+   0.088,
+   0.064,
+   0.118,
+   0.096
+  ],
+  "clock": [
+   0.086,
+   0.106,
+   0.126,
+   0.142
+  ],
+  "a_name": [
+   0.183,
+   0.062,
+   0.225,
+   0.098
+  ],
+  "a": [
+   0.226,
+   0.06,
+   0.246,
+   0.1
+  ],
+  "b_name": [
+   0.183,
+   0.112,
+   0.225,
+   0.148
+  ],
+  "b": [
+   0.226,
+   0.11,
+   0.246,
+   0.15
+  ]
+ },
+ "roster": "# Utah Mammoth at Seattle Kraken (NHL)\nUtah Mammoth|team|Mammoth,Utah\nSeattle Kraken|team|Kraken,Seattle\nKarel Vejmelka|person|Vejmelka\nClayton Keller|person|Keller\nLogan Cooley|person|Cooley\nDylan Guenther|person|Guenther\nNick Schmaltz|person|Schmaltz\nBarrett Hayton|person|Hayton\nLawson Crouse|person|Crouse\nJJ Peterka|person|Peterka\nMikhail Sergachev|person|Sergachev\nJohn Marino|person|Marino\nSean Durzi|person|Durzi\nNate Schmidt|person|Schmidt\nKevin Stenlund|person|Stenlund\nJack McBain|person|McBain\nAlexander Kerfoot|person|Kerfoot\nMichael Carcone|person|Carcone\nAndre Tourigny|person|Tourigny\nJoey Daccord|person|Daccord\nPhilipp Grubauer|person|Grubauer\nJared McCann|person|McCann\nMatty Beniers|person|Beniers\nJordan Eberle|person|Eberle\nChandler Stephenson|person|Stephenson\nJaden Schwartz|person|Schwartz\nEeli Tolvanen|person|Tolvanen\nBrandon Montour|person|Montour\nVince Dunn|person|Dunn\nAdam Larsson|person|Larsson\nShane Wright|person|Wright\nKaapo Kakko|person|Kakko\nJamie Oleksiak|person|Oleksiak\nRyan Lindgren|person|Lindgren\nMason Marchment|person|Marchment\nLane Lambert|person|Lambert",
+ "board_changes": [
+  {
+   "t": 30,
+   "score": [
+    1,
+    2
+   ]
+  },
+  {
+   "t": 98,
+   "score": [
+    2,
+    2
+   ]
+  },
+  {
+   "t": 136,
+   "score": [
+    3,
+    2
+   ]
+  },
+  {
+   "t": 181,
+   "score": [
+    4,
+    2
+   ]
+  },
+  {
+   "t": 226,
+   "score": [
+    6,
+    2
+   ]
+  }
+ ],
+ "broadcaster": "ESPN+ (NHL)"
+}

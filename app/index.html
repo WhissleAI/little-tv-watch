@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV Watch · Little</title>
+  </head>
+  <body>
+    <div id="root" class="app">
+      <video id="video" playsinline></video>
+      <div class="yt" id="yt"></div>
+      <div class="shade"></div>
+      <div class="scrim"></div>
+
+      <div class="bug" data-little="readout" data-little-label="Scoreboard" id="bug">
+        <div class="sport" id="sport">📺</div><div class="score" id="score">– : –</div><div class="clock" id="clock">–</div>
+      </div>
+      <button class="ask" id="ask" data-little="control" data-little-action="ask_game" data-little-label="Ask about the game">🎤 Ask about the game</button>
+      <section class="ask-card" id="ask-card" data-little="region" data-little-label="Your question">
+        <div class="kicker">🎤 You asked</div>
+        <div class="q" id="ask-q"></div>
+        <div class="bar"><i id="ask-level"></i></div>
+        <div class="a" id="ask-a"></div>
+        <div class="by">heard by Arc · answered from the game so far</div>
+      </section>
+      <button class="reel-btn" id="reel-btn" data-little="control" data-little-action="highlights" data-little-label="Highlights">🎬 No highlights yet</button>
+      <section class="hl-list" id="hl-list" data-little="region" data-little-label="Highlights">
+        <div class="kicker">🎬 Highlights</div>
+        <div class="items" id="hl-items"></div>
+      </section>
+      <div class="replay" id="replay"><b>REPLAY</b><span id="replay-title"></span><i id="replay-n"></i></div>
+      <div class="chips" id="chips" data-little="region" data-little-label="Suggested questions"></div>
+      <div class="transport" id="transport" data-little="region" data-little-label="Playback">
+        <button id="t-back10" data-little="control" data-little-action="seek" data-little-label="Back 10 seconds">⏪ 10s</button>
+        <button id="t-play" data-little="control" data-little-action="seek" data-little-label="Pause or play">⏯</button>
+        <button id="t-fwd10" data-little="control" data-little-action="seek" data-little-label="Forward 10 seconds">10s ⏩</button>
+        <button id="t-fwd60" data-little="control" data-little-action="seek" data-little-label="Forward 1 minute">1m ⏩⏩</button>
+        <div class="bar" id="t-bar" tabindex="-1"><i id="t-fill"></i><b id="t-knob"></b></div>
+        <span class="time" id="t-time">0:00 / 0:00</span>
+      </div>
+      <button class="back" id="back" data-little="control" data-little-action="stop" data-little-label="Back">◀ Back</button>
+      <div class="top-right">
+        <div class="board" id="board" title="score and clock read off the broadcast's scoreboard">📷 Scoreboard</div>
+        <div class="src" id="src" data-little="readout" data-little-label="Listening to">Not listening</div>
+        <div class="live off" id="live">● LIVE</div>
+      </div>
+      <div class="crowd" id="crowd"></div>
+
+      <section class="home" id="home" data-little="region" data-little-label="Start">
+        <div class="hero" id="hero">
+          <img class="hero-bg" id="hero-a" alt=""><img class="hero-bg" id="hero-b" alt="">
+          <div class="hero-shade"></div>
+          <div class="logo">TV Watch<span>with Arc</span></div>
+          <div class="hero-body">
+            <div class="hero-meta"><span class="chip" id="hero-sport"></span><span id="hero-bc"></span></div>
+            <h1 id="hero-title">TV Watch</h1>
+            <p id="hero-sub">Arc listens to the game and keeps you in it: score, clock, captions and the moments you care about.</p>
+            <div class="buttons" id="hero-buttons">
+              <button class="play" id="b-play" data-little="control" data-little-action="play_demo" data-little-label="Play">▶ Play</button>
+              <button data-little="control" data-little-action="listen_to_tv" data-little-label="Listen to the TV" id="b-listen">🎙 Listen to the TV</button>
+              <button data-little="control" data-little-action="catch_up" data-little-label="What did I miss?" id="b-recap">⏪ What did I miss?</button>
+            </div>
+          </div>
+        </div>
+        <div class="rows-wrap"><div class="rows" id="catalog" data-little="region" data-little-label="Demo games"></div></div>
+      </section>
+
+      <aside class="side">
+        <div class="toasts" id="toasts" data-little="region" data-little-label="Alerts"></div>
+        <div class="watching" data-little="region" data-little-label="Watching">
+          <div class="cap">★ Watching</div>
+          <div id="watching"></div>
+        </div>
+      </aside>
+
+      <section class="recap" id="recap" data-little="region" data-little-label="What you missed">
+        <div class="kicker">⏪ What you missed</div>
+        <h2 id="recap-head"></h2>
+        <p id="recap-body"></p>
+        <ol id="recap-moments"></ol>
+      </section>
+
+      <div class="cc" data-little="region" data-little-label="Captions">
+        <div class="prev" id="prev" data-little="readout" data-little-label="Last line"></div>
+        <div class="now" id="now">Connecting to Arc…</div>
+      </div>
+      <div class="foot">captions and alerts by Arc · on-device</div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+# New York Knicks v San Antonio Spurs (Finals, Game 5)
+New York Knicks|team|Knicks,New York
+San Antonio Spurs|team|Spurs,San Antonio
+Jalen Brunson|person|Brunson
+Josh Hart|person|Hart
+Mikal Bridges|person|Bridges
+Karl-Anthony Towns|person|Towns,KAT
+OG Anunoby|person|Anunoby
+Mitchell Robinson|person|Robinson,Mitch Robinson
+Miles McBride|person|McBride,Deuce
+Jordan Clarkson|person|Clarkson
+Victor Wembanyama|person|Wembanyama,Wemby
+De'Aaron Fox|person|Fox
+Stephon Castle|person|Castle
+Dylan Harper|person|Harper
+Devin Vassell|person|Vassell
+Keldon Johnson|person|Keldon
+Harrison Barnes|person|Barnes
+Jeremy Sochan|person|Sochan
+Luke Kornet|person|Kornet
+Mitch Johnson|person|Mitch Johnson
+Mike Brown|person|Mike Brown

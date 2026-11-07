@@ -1,0 +1,41 @@
+{
+ "id": "soccer_main",
+ "sport": "soccer",
+ "title": "Arsenal v Bournemouth",
+ "subtitle": "Late winner in stoppage time",
+ "start": 570,
+ "duration": 748,
+ "layout": {
+  "a_name": [
+   0.12,
+   0.112,
+   0.168,
+   0.152
+  ],
+  "score": [
+   0.183,
+   0.108,
+   0.25,
+   0.156
+  ],
+  "b_name": [
+   0.262,
+   0.112,
+   0.315,
+   0.152
+  ],
+  "clock": [
+   0.183,
+   0.178,
+   0.25,
+   0.222
+  ]
+ },
+ "teams": [
+  "ARS",
+  "BOU"
+ ],
+ "roster": "# Arsenal v Bournemouth (Premier League)\nArsenal|team|Gunners\nBournemouth|team|Cherries\nBukayo Saka|person|Saka\nMartin Odegaard|person|Odegaard\nWilliam Saliba|person|Saliba\nGabriel Magalhaes|person|Gabriel\nBen White|person|White\nOleksandr Zinchenko|person|Zinchenko\nReiss Nelson|person|Nelson\nEmile Smith Rowe|person|Smith Rowe\nKai Havertz|person|Havertz\nDeclan Rice|person|Rice\nGabriel Jesus|person|Jesus\nLeandro Trossard|person|Trossard\nJakub Kiwior|person|Kiwior\nTakehiro Tomiyasu|person|Tomiyasu\nJorginho|person|Jorginho\nDavid Raya|person|Raya\nMikel Arteta|person|Arteta\nPhilip Billing|person|Billing\nNeto|person|Neto\nDominic Solanke|person|Solanke\nAntoine Semenyo|person|Semenyo\nAdam Smith|person|Adam Smith\nLloyd Kelly|person|Kelly\nMarcos Senesi|person|Senesi\nIllia Zabarnyi|person|Zabarnyi\nRyan Christie|person|Christie\nLewis Cook|person|Cook\nAndoni Iraola|person|Iraola\nEmirates Stadium|place|Emirates\n",
+ "board_changes": [],
+ "broadcaster": "Premier League"
+}

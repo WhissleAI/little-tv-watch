@@ -1,0 +1,5 @@
+{
+  "appUrl": "http://127.0.0.1:7140",
+  "manifest": "public/little/manifest.json",
+  "dev": "npm run dev"
+}

@@ -1,0 +1,456 @@
+[
+  {
+    "id": "score",
+    "type": "score_change",
+    "cooldown_s": 20,
+    "sports": [
+      "nba",
+      "nfl",
+      "nhl",
+      "soccer",
+      "cricket",
+      "esports"
+    ]
+  },
+  {
+    "id": "lead",
+    "type": "lead_change",
+    "cooldown_s": 20,
+    "priority": 5,
+    "sports": [
+      "nba",
+      "nfl",
+      "nhl",
+      "soccer"
+    ]
+  },
+  {
+    "id": "close",
+    "type": "close_game",
+    "margin": 3,
+    "cooldown_s": 300,
+    "sports": [
+      "nba"
+    ]
+  },
+  {
+    "id": "crunch",
+    "type": "clock_under",
+    "seconds": 120,
+    "cooldown_s": 600,
+    "priority": 5,
+    "sports": [
+      "nba",
+      "nfl",
+      "soccer"
+    ]
+  },
+  {
+    "id": "timeout",
+    "type": "keyword",
+    "words": [
+      "timeout",
+      "time out"
+    ],
+    "cooldown_s": 60,
+    "sports": [
+      "nba",
+      "nfl"
+    ]
+  },
+  {
+    "id": "td",
+    "type": "keyword",
+    "words": [
+      "touchdown"
+    ],
+    "title": "\ud83c\udfc8 Touchdown!",
+    "priority": 5,
+    "cooldown_s": 60,
+    "sports": [
+      "nfl"
+    ]
+  },
+  {
+    "id": "turnover",
+    "type": "keyword",
+    "words": [
+      "interception",
+      "intercepted",
+      "picked off",
+      "fumble",
+      "pick six"
+    ],
+    "title": "\ud83c\udfc8 Turnover!",
+    "cooldown_s": 60,
+    "sports": [
+      "nfl"
+    ]
+  },
+  {
+    "id": "fg",
+    "type": "keyword",
+    "words": [
+      "field goal"
+    ],
+    "title": "\ud83c\udfc8 Field goal",
+    "cooldown_s": 60,
+    "sports": [
+      "nfl"
+    ]
+  },
+  {
+    "id": "goal",
+    "type": "keyword",
+    "words": [
+      "goal",
+      "scores",
+      "what a strike"
+    ],
+    "title": "\u26bd Goal!",
+    "priority": 5,
+    "cooldown_s": 60,
+    "sports": [
+      "soccer"
+    ]
+  },
+  {
+    "id": "cards",
+    "type": "keyword",
+    "words": [
+      "red card",
+      "penalty",
+      "yellow card",
+      "VAR"
+    ],
+    "title": "\u26bd Big moment",
+    "cooldown_s": 60,
+    "sports": [
+      "soccer"
+    ]
+  },
+  {
+    "id": "hgoal",
+    "type": "keyword",
+    "words": [
+      "goal",
+      "scores",
+      "he shoots he scores"
+    ],
+    "title": "\ud83c\udfd2 Goal!",
+    "priority": 5,
+    "cooldown_s": 60,
+    "sports": [
+      "nhl"
+    ]
+  },
+  {
+    "id": "pp",
+    "type": "keyword",
+    "words": [
+      "power play",
+      "penalty shot",
+      "empty net"
+    ],
+    "title": "\ud83c\udfd2 Power play",
+    "cooldown_s": 60,
+    "sports": [
+      "nhl"
+    ]
+  },
+  {
+    "id": "wicket",
+    "type": "keyword",
+    "words": [
+      "wicket",
+      "bowled",
+      "caught",
+      "lbw",
+      "run out"
+    ],
+    "title": "\ud83c\udfcf Wicket!",
+    "priority": 5,
+    "cooldown_s": 60,
+    "sports": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "boundary",
+    "type": "keyword",
+    "words": [
+      "six",
+      "century",
+      "fifty"
+    ],
+    "title": "\ud83c\udfcf Big hit",
+    "cooldown_s": 60,
+    "sports": [
+      "cricket"
+    ]
+  },
+  {
+    "id": "breaking",
+    "type": "keyword",
+    "words": [
+      "breaking news",
+      "just in",
+      "developing story"
+    ],
+    "title": "\ud83d\udcf0 Breaking news",
+    "priority": 5,
+    "cooldown_s": 300,
+    "sports": [
+      "news"
+    ]
+  },
+  {
+    "id": "crowd",
+    "type": "sound",
+    "labels": [
+      "scene.cheer",
+      "scene.applause"
+    ],
+    "title": "\ud83d\udd25 The crowd erupts",
+    "cooldown_s": 60,
+    "priority": 5,
+    "sports": [
+      "nba",
+      "nfl",
+      "nhl",
+      "soccer",
+      "cricket",
+      "esports"
+    ],
+    "mark": "\ud83d\udd25",
+    "min_p": 0.9,
+    "window_s": 12,
+    "note": "confirms a score / goal / wicket alert sent in the last 12 s; never alerts alone (broadcast audio)"
+  },
+  {
+    "id": "back",
+    "type": "game_back",
+    "after_s": 90,
+    "title": "\u25b6\ufe0f The game is back on",
+    "cooldown_s": 120,
+    "priority": 5,
+    "sports": [
+      "nba",
+      "nfl",
+      "nhl",
+      "soccer",
+      "cricket",
+      "esports"
+    ]
+  },
+  {
+    "id": "nba_big",
+    "type": "keyword",
+    "sports": [
+      "nba"
+    ],
+    "title": "\ud83c\udfc0 Big moment",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "buzzer beater",
+      "at the buzzer",
+      "and one",
+      "technical foul",
+      "flagrant foul",
+      "ejected"
+    ]
+  },
+  {
+    "id": "nfl_more",
+    "type": "keyword",
+    "sports": [
+      "nfl"
+    ],
+    "title": "\ud83c\udfc8 Big play",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "sacked",
+      "for a safety",
+      "two point conversion",
+      "onside kick",
+      "challenge flag",
+      "blocked kick",
+      "pick six"
+    ]
+  },
+  {
+    "id": "nhl_more",
+    "type": "keyword",
+    "sports": [
+      "nhl"
+    ],
+    "title": "\ud83c\udfd2 Big moment",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "penalty shot",
+      "shootout",
+      "empty net",
+      "power play goal",
+      "short handed goal"
+    ]
+  },
+  {
+    "id": "soc_more",
+    "type": "keyword",
+    "sports": [
+      "soccer"
+    ],
+    "title": "\u26bd Big moment",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "penalty kick",
+      "penalty to",
+      "var check",
+      "var review",
+      "offside",
+      "own goal",
+      "full time",
+      "half time",
+      "handball"
+    ]
+  },
+  {
+    "id": "cri_more",
+    "type": "keyword",
+    "sports": [
+      "cricket"
+    ],
+    "title": "\ud83c\udfcf Big moment",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "that's six",
+      "it's six",
+      "over the rope",
+      "century",
+      "half century",
+      "lbw",
+      "caught behind",
+      "review",
+      "hat trick"
+    ]
+  },
+  {
+    "id": "esp_big",
+    "type": "keyword",
+    "sports": [
+      "esports"
+    ],
+    "title": "\ud83c\udfae Big play",
+    "priority": 4,
+    "cooldown_s": 60,
+    "words": [
+      "an ace",
+      "pentakill",
+      "baron",
+      "elder dragon",
+      "clutch",
+      "first blood",
+      "team wipe",
+      "match point",
+      "map point",
+      "wins the series",
+      "wins the map"
+    ]
+  },
+  {
+    "id": "news_more",
+    "type": "keyword",
+    "sports": [
+      "news"
+    ],
+    "title": "\ud83d\udcf0 News alert",
+    "priority": 4,
+    "cooldown_s": 120,
+    "words": [
+      "developing story",
+      "just in",
+      "live pictures",
+      "storm warning",
+      "tornado warning",
+      "evacuation",
+      "election results",
+      "press conference"
+    ]
+  },
+  {
+    "id": "talk_guest",
+    "type": "keyword",
+    "sports": [
+      "talk"
+    ],
+    "title": "\ud83c\udf99\ufe0f On the show",
+    "priority": 5,
+    "cooldown_s": 120,
+    "words": [
+      "joining us now",
+      "my next guest",
+      "please welcome"
+    ]
+  },
+  {
+    "id": "court",
+    "type": "keyword",
+    "sports": [
+      "court_trial"
+    ],
+    "title": "\u2696\ufe0f In court",
+    "priority": 4,
+    "cooldown_s": 45,
+    "words": [
+      "verdict",
+      "not guilty",
+      "found guilty",
+      "the jury",
+      "objection",
+      "sustained",
+      "overruled",
+      "sentenced",
+      "mistrial"
+    ]
+  },
+  {
+    "id": "stream_big",
+    "type": "keyword",
+    "sports": [
+      "stream_chat"
+    ],
+    "title": "\ud83d\udce1 On stream",
+    "priority": 5,
+    "cooldown_s": 120,
+    "words": [
+      "raid",
+      "giveaway",
+      "subathon",
+      "new record",
+      "world record"
+    ]
+  },
+  {
+    "type": "name",
+    "name": "Wembanyama",
+    "cooldown_s": 120,
+    "sports": [
+      "nba"
+    ],
+    "id": "r1794083295965"
+  },
+  {
+    "type": "name",
+    "name": "Saka",
+    "cooldown_s": 120,
+    "sports": [
+      "soccer"
+    ],
+    "id": "r1794084662116"
+  }
+]

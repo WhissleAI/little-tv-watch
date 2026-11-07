@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV Watch</title>
+<style>
+  :root { --bg:#f6f5f2; --card:#fff; --ink:#1b1b1f; --mute:#6b6b76; --line:#e4e2dc; --acc:#2f6fe4; --hot:#d9432f; --ok:#1f9d55; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111216; --card:#1a1b21; --ink:#ececf1; --mute:#9a9aa6; --line:#2a2b33; --acc:#6a9cff; --hot:#ff6b57; --ok:#3ccf7a; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 -apple-system, system-ui, sans-serif; }
+  main { max-width:980px; margin:0 auto; padding:16px; display:grid; gap:14px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { main { grid-template-columns: 1.4fr 1fr; } header { grid-column: 1 / -1; } }
+  header { display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; }
+  h1 { font-size:22px; margin:0; letter-spacing:-.01em; }
+  .pill { font-size:12px; padding:3px 9px; border-radius:99px; border:1px solid var(--line); color:var(--mute); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); margin:0 0 10px; }
+  .board { display:flex; gap:22px; align-items:baseline; }
+  .big { font-size:34px; font-weight:700; font-variant-numeric: tabular-nums; }
+  .meter { height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:10px; }
+  .meter i { display:block; height:100%; width:0; background:var(--ok); transition:width .2s; }
+  .line { padding:8px 0; border-top:1px solid var(--line); }
+  .line:first-child { border-top:0; }
+  .t { color:var(--mute); font-size:12px; margin-right:6px; font-variant-numeric: tabular-nums; }
+  .tag { display:inline-block; font-size:11px; padding:1px 6px; margin:3px 4px 0 0; border-radius:5px; background:color-mix(in srgb, var(--acc) 14%, transparent); color:var(--acc); }
+  .tag.n { background:color-mix(in srgb, var(--hot) 14%, transparent); color:var(--hot); }
+  .partial { color:var(--mute); font-style:italic; min-height:1.4em; }
+  .h { font-weight:600; border-radius:4px; padding:0 3px; }
+  .h.person { color:#2f6fe4; background:#2f6fe41c; } .h.team { color:#8b3fd9; background:#8b3fd91c; }
+  .h.place { color:#1f9d55; background:#1f9d551c; } .h.org, .h.product { color:#0e8c7f; background:#0e8c7f1c; }
+  .h.num { color:#d9432f; background:#d9432f1c; } .h.other { color:#5b6b8c; background:#5b6b8c1c; }
+  .h.watch { background:#f5c54266; }
+  .alert { padding:8px 10px; border-left:3px solid var(--hot); background:color-mix(in srgb, var(--hot) 7%, transparent); border-radius:6px; margin-bottom:8px; }
+  .alert b { display:block; }
+  .alert span { color:var(--mute); font-size:13px; }
+  .rule { display:flex; justify-content:space-between; gap:8px; padding:6px 0; border-top:1px solid var(--line); }
+  .rule:first-child { border-top:0; }
+  button { font:inherit; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; padding:6px 10px; cursor:pointer; }
+  button.primary { background:var(--acc); color:#fff; border-color:var(--acc); }
+  form { display:grid; gap:8px; margin-top:10px; }
+  select, input { font:inherit; padding:7px 9px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--ink); width:100%; }
+  #feed { max-height:52vh; overflow:auto; }
+  .empty { color:var(--mute); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>📺 TV Watch</h1>
+    <span class="pill" id="status">…</span>
+    <span class="pill" id="domain"></span>
+    <span class="pill" id="push"></span>
+    <a class="pill" href="/tv" target="_blank" style="margin-left:auto;text-decoration:none">📺 TV mode</a>
+    <button id="test">Send test alert</button>
+  </header>
+
+  <section class="card">
+    <div class="board">
+      <div><h2>Score</h2><div class="big" id="score">–</div></div>
+      <div><h2>Clock</h2><div class="big" id="clock">–</div></div>
+    </div>
+    <div class="meter" title="input level"><i id="lvl"></i></div>
+    <h2 style="margin-top:16px">On TV now</h2>
+    <div class="partial" id="partial"></div>
+    <div id="feed"><p class="empty">Waiting for speech…</p></div>
+  </section>
+
+  <div style="display:grid; gap:14px; align-content:start; min-width:0">
+    <section class="card"><h2>Alerts</h2><div id="alerts"><p class="empty">None yet.</p></div></section>
+    <section class="card">
+      <h2>Rules</h2>
+      <div id="rules"></div>
+      <form id="add">
+        <select id="type">
+          <option value="name">A person / team is mentioned</option>
+          <option value="keyword">Any of these words</option>
+          <option value="score_change">Score changes</option>
+          <option value="lead_change">Lead changes</option>
+          <option value="close_game">Close game (within N points)</option>
+          <option value="clock_under">Clock under N seconds</option>
+          <option value="entity">Any person Arc hears</option>
+          <option value="topic">Topic (LLM, needs API key)</option>
+        </select>
+        <input id="val" placeholder="Stephen Curry">
+        <button class="primary">Add rule</button>
+      </form>
+    </section>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+function hl(text, tags) {
+  const w = String(text || "").split(" ").map(esc);
+  for (const t of tags || []) {
+    if (t.wb == null || t.we <= t.wb || t.we > w.length || t.tag === "NUMBER" || t.tag === "NUMBER_ORDINAL") continue;
+    const k = t.tag.startsWith("NUMBER") ? "num" : ({ENTITY_PERSON:"person", ENTITY_TEAM:"team", ENTITY_PLACE:"place", ENTITY_ORG:"org", ENTITY_PRODUCT:"product"})[t.tag] || "other";
+    w[t.wb] = `<span class="h ${k}${t.watch ? " watch" : ""}" title="${esc(t.tag)}">${t.watch ? "★ " : ""}` + w[t.wb];
+    w[t.we - 1] += "</span>";
+  }
+  return w.join(" ");
+}
+var esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const HINT = {name:"Stephen Curry", keyword:"timeout, injury, breaking news", close_game:"3", clock_under:"120", topic:"the stock market", score_change:"", lead_change:"", entity:""};
+$("type").onchange = () => { $("val").placeholder = HINT[$("type").value]; $("val").style.display = HINT[$("type").value] ? "" : "none"; };
+function describe(r) {
+  return ({name:`🗣️ ${r.name} mentioned`, keyword:`🔤 any of: ${(r.words||[]).join(", ")}`, score_change:"🏀 score changes",
+    lead_change:"🔁 lead changes", close_game:`⚖️ within ${r.margin} points`, clock_under:`⏱️ under ${r.seconds}s left`,
+    entity:"👤 any person mentioned", topic:`🧠 topic: ${r.topic}`,
+    sound:`🔊 ${(r.labels||[]).map(l => l.split(".").pop()).join(" / ")} (experimental)`})[r.type] || r.type;
+}
+async function post(path, body) { await fetch(path, {method:"POST", body: JSON.stringify(body||{})}); tick(); }
+$("test").onclick = () => post("/api/test");
+$("add").onsubmit = e => {
+  e.preventDefault();
+  const t = $("type").value, v = $("val").value.trim(), r = {type:t};
+  if (t === "name") { if (!v) return; r.name = v; r.cooldown_s = 120; }
+  if (t === "keyword") { if (!v) return; r.words = v.split(",").map(s => s.trim()).filter(Boolean); }
+  if (t === "close_game") r.margin = +(v || 3);
+  if (t === "clock_under") { r.seconds = +(v || 120); r.cooldown_s = 600; }
+  if (t === "topic") { if (!v) return; r.topic = v; r.cooldown_s = 300; }
+  if (t === "entity") r.label = "Mentioned";
+  $("val").value = ""; post("/api/rules", r);
+};
+async function tick() {
+  let s; try { s = await (await fetch("/api/state")).json(); } catch { $("status").textContent = "offline"; return; }
+  $("status").textContent = s.status; $("domain").textContent = "domain: " + s.domain;
+  $("push").textContent = s.dry_run || !s.ntfy ? "alerts: on this page only" : "push: ntfy/" + s.ntfy;
+  $("score").textContent = s.score_text || (s.score ? `${s.score[0]}–${s.score[1]}` : "–");
+  $("clock").textContent = s.clock != null ? `${Math.floor(s.clock/60)}:${String(s.clock%60).padStart(2,"0")}` : "–";
+  $("lvl").style.width = Math.min(100, s.level * 140) + "%";
+  $("lvl").style.background = s.level > 0.95 ? "var(--hot)" : "var(--ok)";
+  $("partial").textContent = s.partial ? s.partial + " …" : "";
+  $("feed").innerHTML = s.lines.length ? s.lines.map(l => `<div class="line"><span class="t">${l.time}</span>${hl(l.text, l.tags)}</div>`).join("")
+    : '<p class="empty">Waiting for speech…</p>';
+  $("alerts").innerHTML = s.alerts.length ? s.alerts.map(a => `<div class="alert"><b>${esc(a.title)}</b><span>${a.time} · ${esc(a.body)}</span></div>`).join("") : '<p class="empty">None yet.</p>';
+  $("rules").innerHTML = s.rules.map(r => `<div class="rule"><span>${esc(describe(r))}</span><button data-id="${esc(r.id)}">✕</button></div>`).join("") || '<p class="empty">No rules.</p>';
+  document.querySelectorAll("#rules button").forEach(b => b.onclick = () => post("/api/rules/delete", {id: b.dataset.id}));
+}
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

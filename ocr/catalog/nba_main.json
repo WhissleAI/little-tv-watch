@@ -1,0 +1,53 @@
+{
+ "id": "nba_main",
+ "sport": "nba",
+ "title": "Knicks at Spurs",
+ "subtitle": "NBA Finals · 4th-quarter comeback",
+ "start": 0,
+ "duration": 460,
+ "layout": {
+  "a_name": [
+   0.313,
+   0.885,
+   0.352,
+   0.925
+  ],
+  "a": [
+   0.385,
+   0.882,
+   0.448,
+   0.928
+  ],
+  "b_name": [
+   0.453,
+   0.885,
+   0.492,
+   0.925
+  ],
+  "b": [
+   0.528,
+   0.882,
+   0.585,
+   0.928
+  ],
+  "period": [
+   0.593,
+   0.885,
+   0.628,
+   0.925
+  ],
+  "clock": [
+   0.64,
+   0.882,
+   0.722,
+   0.928
+  ]
+ },
+ "teams": [
+  "NY",
+  "SA"
+ ],
+ "roster": "# New York Knicks v San Antonio Spurs (Finals, Game 5)\nNew York Knicks|team|Knicks,New York\nSan Antonio Spurs|team|Spurs,San Antonio\nJalen Brunson|person|Brunson\nJosh Hart|person|Hart\nMikal Bridges|person|Bridges\nKarl-Anthony Towns|person|Towns,KAT\nOG Anunoby|person|Anunoby\nMitchell Robinson|person|Robinson,Mitch Robinson\nMiles McBride|person|McBride,Deuce\nJordan Clarkson|person|Clarkson\nVictor Wembanyama|person|Wembanyama,Wemby\nDe'Aaron Fox|person|Fox\nStephon Castle|person|Castle\nDylan Harper|person|Harper\nDevin Vassell|person|Vassell\nKeldon Johnson|person|Keldon\nHarrison Barnes|person|Barnes\nJeremy Sochan|person|Sochan\nLuke Kornet|person|Kornet\nMitch Johnson|person|Mitch Johnson\nMike Brown|person|Mike Brown\n",
+ "board_changes": [],
+ "broadcaster": "ESPN/ABC"
+}

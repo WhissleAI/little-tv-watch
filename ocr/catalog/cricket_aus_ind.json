@@ -1,0 +1,81 @@
+{
+ "id": "cricket_aus_ind",
+ "sport": "cricket",
+ "title": "Australia v India",
+ "subtitle": "Boxing Day Test: Konstas' debut, day one",
+ "start": 0,
+ "duration": 350,
+ "layout": {
+  "a_name": [
+   0.105,
+   0.866,
+   0.205,
+   0.903
+  ],
+  "wr": [
+   0.1,
+   0.905,
+   0.192,
+   0.972
+  ],
+  "overs": [
+   0.193,
+   0.933,
+   0.236,
+   0.972
+  ]
+ },
+ "roster": "# Australia v India, Fourth Test, MCG (Day One)\nAustralia|team|Aussies\nIndia|team|\nSam Konstas|person|Konstas\nUsman Khawaja|person|Khawaja\nMarnus Labuschagne|person|Labuschagne\nSteve Smith|person|Smith\nTravis Head|person|Head\nMitchell Marsh|person|Marsh\nAlex Carey|person|Carey\nPat Cummins|person|Cummins\nMitchell Starc|person|Starc\nNathan Lyon|person|Lyon\nScott Boland|person|Boland\nRohit Sharma|person|Sharma\nYashasvi Jaiswal|person|Jaiswal\nKL Rahul|person|Rahul\nVirat Kohli|person|Kohli\nRishabh Pant|person|Pant\nNitish Kumar Reddy|person|Reddy\nRavindra Jadeja|person|Jadeja\nWashington Sundar|person|Sundar\nJasprit Bumrah|person|Bumrah\nMohammed Siraj|person|Siraj\nAkash Deep|person|Deep",
+ "board_changes": [
+  {
+   "t": 59,
+   "score": [
+    89,
+    1
+   ]
+  },
+  {
+   "t": 165,
+   "score": [
+    154,
+    2
+   ]
+  },
+  {
+   "t": 269,
+   "score": [
+    237,
+    3
+   ]
+  },
+  {
+   "t": 286,
+   "score": [
+    240,
+    4
+   ]
+  },
+  {
+   "t": 302,
+   "score": [
+    246,
+    5
+   ]
+  },
+  {
+   "t": 341,
+   "score": [
+    299,
+    6
+   ]
+  },
+  {
+   "t": 353,
+   "score": [
+    311,
+    6
+   ]
+  }
+ ],
+ "broadcaster": "Fox Cricket (cricket.com.au)"
+}

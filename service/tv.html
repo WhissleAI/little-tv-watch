@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV Watch · TV mode</title>
+<style>
+  :root { --ink:#f4f6fb; --mute:#9aa3b8; --live:#ff4d4f; --accent:#3b82f6; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { height:100%; background:radial-gradient(ellipse at 30% 20%, #18223d 0%, #0a0c12 60%); color:var(--ink);
+    font-family:-apple-system, "Segoe UI", Roboto, system-ui, sans-serif; overflow:hidden; }
+  /* score bug, top left, like a broadcast */
+  .bug { position:fixed; top:4vh; left:3vw; display:flex; align-items:stretch; border-radius:1.2vh; overflow:hidden;
+    box-shadow:0 1vh 4vh #0008; font-variant-numeric:tabular-nums; }
+  .bug .sport { background:var(--accent); padding:1.2vh 1.6vw; font-size:3vh; font-weight:800; display:flex; align-items:center; gap:.8vw; }
+  .bug .score { background:#111521ee; padding:1.2vh 2vw; font-size:4.4vh; font-weight:800; letter-spacing:.05em; }
+  .bug .clock { background:#1c2234ee; padding:1.2vh 1.6vw; font-size:3.4vh; font-weight:700; color:#ffd166; display:flex; align-items:center; }
+  .live { position:fixed; top:4.6vh; right:3vw; font-size:2.2vh; font-weight:800; letter-spacing:.15em; color:#fff;
+    background:var(--live); padding:.6vh 1.2vw; border-radius:1vh; animation:pulse 1.6s infinite; }
+  .live.off { background:#444; animation:none; }
+  @keyframes pulse { 50% { opacity:.55; } }
+  .brand { position:fixed; top:4.8vh; right:12vw; font-size:2vh; color:var(--mute); }
+  /* captions, bottom third */
+  .cc { position:fixed; left:6vw; right:6vw; bottom:7vh; }
+  .prev { font-size:3.4vh; color:#c3c9d8aa; line-height:1.35; margin-bottom:1.6vh; max-height:9.5vh; overflow:hidden;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+  .now { font-size:5.2vh; font-weight:600; line-height:1.3; text-shadow:0 .3vh 1.2vh #000c; min-height:6.8vh;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .now .cursor { display:inline-block; width:.5vh; height:4.6vh; background:var(--ink); vertical-align:-.6vh; margin-left:.6vh; animation:pulse 1s infinite; }
+  .h { font-weight:800; border-radius:.6vh; padding:0 .5vh; }
+  .h.person { color:#8db4ff; background:#7aa7ff26; } .h.team { color:#d2b0ff; background:#c49bff26; }
+  .h.place { color:#6fe0a8; background:#5fd39a26; } .h.org, .h.product { color:#5fe0d3; background:#4fd1c526; }
+  .h.num { color:#ff9c87; background:#ff8a7326; } .h.other { color:#b9c4dc; background:#a3b1cc22; }
+  .h.watch { background:#f5c54233; box-shadow:inset 0 -.4vh 0 #f5c542; }
+  /* alert toast, right */
+  .toasts { position:fixed; right:3vw; top:14vh; width:34vw; display:flex; flex-direction:column; gap:1.6vh; }
+  .toast { background:#1a1214ee; border-left:.8vh solid var(--live); border-radius:1.2vh; padding:1.8vh 1.6vw;
+    box-shadow:0 1vh 4vh #0009; animation:in .35s ease-out; transition:opacity .6s, transform .6s; }
+  .toast.p4 { border-left-color:var(--accent); background:#121826ee; }
+  .toast b { display:block; font-size:3.4vh; }
+  .toast span { display:block; margin-top:.6vh; font-size:2.3vh; color:#c9cfdd; line-height:1.35;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .toast.out { opacity:0; transform:translateX(4vw); }
+  @keyframes in { from { opacity:0; transform:translateX(6vw); } }
+  .crowd { position:fixed; top:4.6vh; left:50%; transform:translateX(-50%); font-size:2.6vh; font-weight:800;
+    letter-spacing:.12em; padding:.8vh 1.6vw; border-radius:1vh; background:#f59e0bdd; color:#111; opacity:0;
+    transition:opacity .4s; }
+  .crowd.on { opacity:1; animation:pulse .7s 4; }
+  .hint { position:fixed; bottom:2vh; right:3vw; font-size:1.6vh; color:#ffffff44; }
+</style>
+</head>
+<body>
+  <div class="bug"><div class="sport" id="sport">📺</div><div class="score" id="score">– : –</div><div class="clock" id="clock">–</div></div>
+  <div class="brand">TV Watch · Arc on Raspberry Pi</div>
+  <div class="live off" id="live">● LIVE</div>
+  <div class="toasts" id="toasts"></div>
+  <div class="crowd" id="crowd"></div>
+  <div class="cc"><div class="prev" id="prev"></div><div class="now" id="now">Connecting to the Pi…</div></div>
+  <div class="hint">captions and alerts by Arc, on-device</div>
+<script>
+const $ = id => document.getElementById(id);
+const EMO = {nba:"🏀", nfl:"🏈", nhl:"🏒", soccer:"⚽", cricket:"🏏", esports:"🎮", news:"📰", talk:"🎙️", court_trial:"⚖️", stream_chat:"📡"};
+const SHORT = {nba:"NBA", nfl:"NFL", nhl:"NHL", soccer:"SOCCER", cricket:"CRICKET", esports:"ESPORTS", news:"NEWS", talk:"TALK", court_trial:"COURT", stream_chat:"STREAM"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function hl(line) {
+  const w = String(line.text || "").split(" ").map(esc);
+  for (const t of line.tags || []) {
+    if (t.wb == null || t.we <= t.wb || t.we > w.length || t.tag === "NUMBER" || t.tag === "NUMBER_ORDINAL") continue;
+    const k = t.tag.startsWith("NUMBER") ? "num" : ({ENTITY_PERSON:"person", ENTITY_TEAM:"team", ENTITY_PLACE:"place", ENTITY_ORG:"org", ENTITY_PRODUCT:"product"})[t.tag] || "other";
+    w[t.wb] = `<span class="h ${k}${t.watch ? " watch" : ""}">${t.watch ? "★ " : ""}` + w[t.wb];
+    w[t.we - 1] += "</span>";
+  }
+  return w.join(" ");
+}
+function state(s) {
+  if (s.domain) $("sport").textContent = (EMO[s.domain] || "📺") + " " + (SHORT[s.domain] || s.domain.toUpperCase());
+  if ("score" in s) $("score").textContent = s.score_text || (s.score ? `${s.score[0]} – ${s.score[1]}` : "– : –");
+  const c = s.clock_label || (s.clock != null ? `${Math.floor(s.clock / 60)}:${String(s.clock % 60).padStart(2, "0")}` : "");
+  if ("clock" in s || "clock_label" in s) { $("clock").textContent = c || "–"; }
+}
+function toast(a) {
+  const d = document.createElement("div");
+  d.className = "toast p" + (a.priority || 4);
+  d.innerHTML = `<b>${esc(a.title)}</b><span>${esc(a.body)}</span>`;
+  $("toasts").prepend(d);
+  while ($("toasts").children.length > 3) $("toasts").lastChild.remove();
+  setTimeout(() => d.classList.add("out"), 7000);
+  setTimeout(() => d.remove(), 7700);
+}
+function connect() {
+  const es = new EventSource("/api/events");
+  es.addEventListener("hello", e => {
+    const h = JSON.parse(e.data); state(h); $("live").classList.remove("off");
+    const lines = h.lines || [];
+    $("prev").innerHTML = lines.length ? hl(lines[lines.length - 1]) : "";
+    $("now").innerHTML = "Listening…";
+  });
+  es.addEventListener("state", e => state(JSON.parse(e.data)));
+  es.addEventListener("partial", e => { $("now").innerHTML = hl(JSON.parse(e.data)) + '<span class="cursor"></span>'; });
+  es.addEventListener("final", e => { const l = JSON.parse(e.data); $("prev").innerHTML = hl(l); $("now").innerHTML = '<span class="cursor"></span>'; });
+  es.addEventListener("alert", e => toast(JSON.parse(e.data)));
+  const SOUND = {"scene.cheer":"📣 CROWD CHEERS", "scene.applause":"👏 APPLAUSE", "scene.boo_jeer":"👎 BOOS",
+                 "scene.whistle":"🎵 WHISTLE", "scene.buzzer":"🚨 BUZZER", "scene.horn":"📯 HORN"};
+  es.addEventListener("event", e => {
+    const ev = JSON.parse(e.data), label = SOUND[ev.label];
+    if (!label) return;
+    $("crowd").textContent = label; $("crowd").classList.add("on");
+    clearTimeout(window._ct); window._ct = setTimeout(() => $("crowd").classList.remove("on"), 4000);
+  });
+  es.onerror = () => { $("live").classList.add("off"); };
+  es.onopen = () => $("live").classList.remove("off");
+}
+connect();
+document.addEventListener("dblclick", () => document.documentElement.requestFullscreen?.());
+</script>
+</body>
+</html>

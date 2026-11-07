@@ -1,0 +1,77 @@
+{
+ "id": "nfl_kc_den",
+ "sport": "nfl",
+ "title": "Chiefs at Broncos",
+ "subtitle": "CBS · tied in the 4th quarter",
+ "start": 0,
+ "duration": 317.0,
+ "layout": {
+  "a": [
+   0.36,
+   0.845,
+   0.422,
+   0.925
+  ],
+  "period": [
+   0.43,
+   0.9,
+   0.47,
+   0.945
+  ],
+  "clock": [
+   0.488,
+   0.9,
+   0.538,
+   0.945
+  ],
+  "b": [
+   0.58,
+   0.845,
+   0.642,
+   0.925
+  ]
+ },
+ "teams": [
+  "KC",
+  "DEN"
+ ],
+ "roster": "Kansas City Chiefs|team|Chiefs,Kansas City\nPatrick Mahomes|person|Mahomes\nTravis Kelce|person|Kelce\nRashee Rice|person|Rice\nXavier Worthy|person|Worthy\nIsiah Pacheco|person|Pacheco\nKareem Hunt|person|Hunt\nChris Jones|person|Chris Jones\nHarrison Butker|person|Butker\nAndy Reid|person|Reid\nDenver Broncos|team|Broncos,Denver\nBo Nix|person|Nix,Bo\nCourtland Sutton|person|Sutton\nJ.K. Dobbins|person|Dobbins\nRJ Harvey|person|Harvey\nTroy Franklin|person|Franklin\nPatrick Surtain II|person|Surtain\nNik Bonitto|person|Bonitto\nWil Lutz|person|Lutz\nSean Payton|person|Payton",
+ "board_changes": [
+  {
+   "t": 19,
+   "score": [
+    13,
+    13
+   ]
+  },
+  {
+   "t": 66,
+   "score": [
+    13,
+    16
+   ]
+  },
+  {
+   "t": 132,
+   "score": [
+    19,
+    16
+   ]
+  },
+  {
+   "t": 220,
+   "score": [
+    19,
+    19
+   ]
+  },
+  {
+   "t": 303,
+   "score": [
+    19,
+    22
+   ]
+  }
+ ],
+ "broadcaster": "CBS"
+}

@@ -1,0 +1,79 @@
+{
+ "about": "Scoreboard layouts measured from broadcasts seen on YouTube (not from a demo clip), tried by src/boardyt.ts alongside the catalog's. Fractions of the 1920x1080 stage.",
+ "layouts": [
+  {
+   "id": "premier_league_2026",
+   "sport": "soccer",
+   "broadcaster": "Premier League world feed (2026/27 graphic; NBC Sports highlights on YouTube)",
+   "boxes": {
+    "a_name": [
+     0.07,
+     0.068,
+     0.118,
+     0.117
+    ],
+    "a": [
+     0.126,
+     0.066,
+     0.156,
+     0.119
+    ],
+    "b": [
+     0.17,
+     0.066,
+     0.202,
+     0.119
+    ],
+    "b_name": [
+     0.212,
+     0.068,
+     0.258,
+     0.117
+    ],
+    "clock": [
+     0.298,
+     0.068,
+     0.37,
+     0.117
+    ]
+   }
+  },
+  {
+   "id": "premier_league_2025",
+   "sport": "soccer",
+   "broadcaster": "Premier League world feed (2025/26 graphic, team-colour halves, clock below the crest)",
+   "boxes": {
+    "a_name": [
+     0.048,
+     0.066,
+     0.098,
+     0.108
+    ],
+    "a": [
+     0.113,
+     0.064,
+     0.136,
+     0.11
+    ],
+    "b": [
+     0.158,
+     0.064,
+     0.181,
+     0.11
+    ],
+    "b_name": [
+     0.182,
+     0.066,
+     0.246,
+     0.108
+    ],
+    "clock": [
+     0.112,
+     0.104,
+     0.184,
+     0.137
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "id": "cricket_main",
+ "sport": "cricket",
+ "title": "Australia v India",
+ "subtitle": "Border-Gavaskar Trophy · first overs",
+ "start": 0,
+ "duration": 82,
+ "layout": {
+  "a_name": [
+   0.105,
+   0.866,
+   0.205,
+   0.903
+  ],
+  "wr": [
+   0.103,
+   0.9,
+   0.16,
+   0.972
+  ],
+  "overs": [
+   0.193,
+   0.933,
+   0.236,
+   0.972
+  ]
+ },
+ "teams": [
+  "AUS",
+  "IND"
+ ],
+ "roster": "# Australia v India (Border-Gavaskar Trophy)\nAustralia|team|Aussies\nIndia|team|Indians\nBorder-Gavaskar Trophy|other|Border Gavaskar\nJasprit Bumrah|person|Bumrah,Boom\nSam Konstas|person|Konstas\nUsman Khawaja|person|Khawaja,Uzzie\nVirat Kohli|person|Kohli,Virat\nRohit Sharma|person|Rohit\nShubman Gill|person|Gill\nYashasvi Jaiswal|person|Jaiswal\nRishabh Pant|person|Pant\nMohammed Siraj|person|Siraj\nRavindra Jadeja|person|Jadeja\nNitish Kumar Reddy|person|Nitish Reddy\nWashington Sundar|person|Sundar\nPrasidh Krishna|person|Prasidh\nKL Rahul|person|Rahul\nPat Cummins|person|Cummins\nMitchell Starc|person|Starc\nScott Boland|person|Boland\nNathan Lyon|person|Lyon\nSteve Smith|person|Smith\nTravis Head|person|Head\nMarnus Labuschagne|person|Labuschagne,Marnus\nAlex Carey|person|Carey\nBeau Webster|person|Webster\nSydney Cricket Ground|place|SCG,Sydney\n",
+ "board_changes": [],
+ "broadcaster": "Fox Cricket"
+}

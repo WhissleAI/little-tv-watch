@@ -1,0 +1,70 @@
+{
+ "id": "nfl_dal_kc",
+ "sport": "nfl",
+ "title": "Chiefs at Cowboys",
+ "subtitle": "CBS · Thanksgiving, a 4th-quarter shootout",
+ "start": 0,
+ "duration": 360.0,
+ "layout": {
+  "a": [
+   0.36,
+   0.845,
+   0.422,
+   0.925
+  ],
+  "period": [
+   0.43,
+   0.9,
+   0.47,
+   0.945
+  ],
+  "clock": [
+   0.488,
+   0.9,
+   0.538,
+   0.945
+  ],
+  "b": [
+   0.58,
+   0.845,
+   0.642,
+   0.925
+  ]
+ },
+ "teams": [
+  "KC",
+  "DAL"
+ ],
+ "roster": "Kansas City Chiefs|team|Chiefs,Kansas City\nPatrick Mahomes|person|Mahomes\nTravis Kelce|person|Kelce\nRashee Rice|person|Rice\nXavier Worthy|person|Worthy\nIsiah Pacheco|person|Pacheco\nKareem Hunt|person|Hunt\nChris Jones|person|Chris Jones\nHarrison Butker|person|Butker\nAndy Reid|person|Reid\nHollywood Brown|person|Hollywood,Marquise Brown\nDallas Cowboys|team|Cowboys,Dallas\nDak Prescott|person|Dak,Prescott\nCeeDee Lamb|person|CeeDee,Lamb\nGeorge Pickens|person|Pickens\nJavonte Williams|person|Javonte\nJake Ferguson|person|Ferguson\nBrandon Aubrey|person|Aubrey\nBrian Schottenheimer|person|Schottenheimer",
+ "board_changes": [
+  {
+   "t": 1,
+   "score": [
+    21,
+    28
+   ]
+  },
+  {
+   "t": 40,
+   "score": [
+    21,
+    31
+   ]
+  },
+  {
+   "t": 185,
+   "score": [
+    27,
+    31
+   ]
+  },
+  {
+   "t": 194,
+   "score": [
+    28,
+    31
+   ]
+  }
+ ],
+ "broadcaster": "CBS"
+}

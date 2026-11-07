@@ -1,0 +1,35 @@
+# local maintenance (machine paths)
+sync.sh
+# media, models and generated data never go in this repository
+media/
+reels/
+sessions/
+models/
+*.mp4
+*.wav
+*.pcm
+*.jpg
+*.png
+*.pt
+*.onnx
+*.safetensors
+*.wasm
+arc-wasm/arc_*.mjs
+ocr/glyphs/data/
+app/public/catalog
+app/public/clips
+app/public/demos
+app/public/arcwasm
+app/public/arctag
+app/public/ort
+app/public/director
+app/public/glyphs
+app/public/tess
+node_modules/
+dist/
+__pycache__/
+*.log
+.env
+.DS_Store
+little.json
+.tunnel_url

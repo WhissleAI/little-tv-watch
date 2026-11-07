@@ -1,0 +1,53 @@
+{
+ "id": "nhl_main",
+ "sport": "nhl",
+ "title": "Oilers at Utah",
+ "subtitle": "Overtime",
+ "start": 0,
+ "duration": 151,
+ "layout": {
+  "period": [
+   0.088,
+   0.064,
+   0.118,
+   0.096
+  ],
+  "clock": [
+   0.086,
+   0.106,
+   0.126,
+   0.142
+  ],
+  "a_name": [
+   0.183,
+   0.062,
+   0.225,
+   0.098
+  ],
+  "a": [
+   0.226,
+   0.06,
+   0.246,
+   0.1
+  ],
+  "b_name": [
+   0.183,
+   0.112,
+   0.225,
+   0.148
+  ],
+  "b": [
+   0.226,
+   0.11,
+   0.246,
+   0.15
+  ]
+ },
+ "teams": [
+  "EDM",
+  "UTAH"
+ ],
+ "roster": "# Edmonton Oilers v Utah Mammoth (overtime clip)\nEdmonton Oilers|team|Oilers,Edmonton\nUtah Mammoth|team|Mammoth,Utah\nConnor McDavid|person|McDavid\nLeon Draisaitl|person|Draisaitl\nRyan Nugent-Hopkins|person|Nugent-Hopkins,Nuge\nEvan Bouchard|person|Bouchard\nDarnell Nurse|person|Nurse\nZach Hyman|person|Hyman\nJake Walman|person|Walman\nMatt Savoie|person|Savoie\nStuart Skinner|person|Skinner\nTristan Jarry|person|Jarry\nClayton Keller|person|Keller\nLogan Cooley|person|Cooley\nDylan Guenther|person|Guenther\nNick Schmaltz|person|Schmaltz\nMikhail Sergachev|person|Sergachev\nBarrett Hayton|person|Hayton\nLawson Crouse|person|Crouse\nJJ Peterka|person|Peterka\nMikhail Sergachev|person|Sergachev\nKarel Vejmelka|person|Vejmelka\nJohn Marino|person|Marino\nKevin Stenlund|person|Stenlund\n",
+ "board_changes": [],
+ "broadcaster": "ESPN"
+}

@@ -1,0 +1,222 @@
+* { box-sizing: border-box; margin: 0; }
+html, body { height: 100%; background: #0a0c12; color: #f4f6fb; overflow: hidden;
+  font-family: -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; }
+.app { position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: radial-gradient(ellipse at 30% 20%, #18223d 0%, #0a0c12 60%);
+  padding: var(--little-safe-top) var(--little-safe-right) var(--little-safe-bottom) var(--little-safe-left); }
+video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s; }
+.app.playing video { opacity: 1; }
+.shade { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .6s;
+  background: linear-gradient(to bottom, #000a 0, #0000 220px, #0000 640px, #000d 100%); }
+.app.playing .shade { opacity: 1; }
+
+.bug { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); display: flex; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 10px 40px #0008; font-variant-numeric: tabular-nums; }
+.bug .sport { background: #3b82f6; padding: 14px 28px; font-size: 32px; font-weight: 800; display: flex; align-items: center; }
+.bug .score { background: #111521ee; padding: 14px 36px; font-size: 48px; font-weight: 800; letter-spacing: .04em; }
+.bug .clock { background: #1c2234ee; padding: 14px 28px; font-size: 36px; font-weight: 700; color: #ffd166; display: flex; align-items: center; }
+.top-right { position: absolute; top: 56px; right: 60px; display: flex; gap: 18px; align-items: center; }
+.src { font-size: 24px; color: #c9cfdd; background: #111521cc; padding: 8px 18px; border-radius: 10px; }
+.board { position: absolute; top: 64px; right: 0; white-space: nowrap; font-size: 22px; color: #111; background: #6fe0a8;
+  padding: 8px 16px; border-radius: 10px; font-weight: 700; display: none; }
+.board.on { display: block; }
+.live { font-size: 24px; font-weight: 800; letter-spacing: .15em; background: #ff4d4f; padding: 8px 18px; border-radius: 10px;
+  animation: pulse 1.6s infinite; }
+.live.off { background: #444; animation: none; }
+@keyframes pulse { 50% { opacity: .55; } }
+.crowd { position: absolute; top: 140px; left: 50%; transform: translateX(-50%); font-size: 28px; font-weight: 800;
+  letter-spacing: .12em; padding: 10px 26px; border-radius: 12px; background: #f59e0bdd; color: #111; opacity: 0; transition: opacity .4s; }
+.crowd.on { opacity: 1; animation: pulse .7s 4; }
+
+button { font: inherit; font-size: 30px; font-weight: 700; color: #f4f6fb; background: #1b2235; border: 3px solid #2c3653;
+  padding: 20px 34px; border-radius: 18px; cursor: pointer; }
+button.big { background: #3b82f6; border-color: #3b82f6; }
+button:focus, button.f, button:hover { outline: none; border-color: #ffd166; transform: scale(1.04); box-shadow: 0 0 0 6px #ffd16633; }
+
+.side { position: absolute; right: 60px; top: 200px; width: 600px; display: flex; flex-direction: column; gap: 22px; }
+.toasts { display: flex; flex-direction: column; gap: 16px; }
+.toast { background: #1a1214ee; border-left: 10px solid #ff4d4f; border-radius: 14px; padding: 20px 26px;
+  box-shadow: 0 10px 40px #0009; animation: in .35s ease-out; transition: opacity .6s, transform .6s; }
+.toast.p4 { border-left-color: #3b82f6; background: #121826ee; }
+.toast b { display: block; font-size: 36px; }
+.toast span { display: block; margin-top: 8px; font-size: 24px; color: #c9cfdd; line-height: 1.35;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.toast.out { opacity: 0; transform: translateX(60px); }
+@keyframes in { from { opacity: 0; transform: translateX(90px); } }
+.watching { background: #111521cc; border-radius: 14px; padding: 16px 22px; font-size: 24px; }
+.watching:has(#watching:empty) { display: none; }
+.app:not(.playing):not(.listening) .watching { display: none; }   /* a watchlist belongs with a game on screen */
+.watching .cap { color: #f5c542; font-weight: 800; margin-bottom: 6px; }
+.watching .w { display: inline-block; margin: 4px 12px 4px 0; }
+
+.h { font-weight: 800; border-radius: 6px; padding: 0 5px; }
+.h.person { color: #8db4ff; background: #7aa7ff26; } .h.team { color: #d2b0ff; background: #c49bff26; }
+.h.place { color: #6fe0a8; background: #5fd39a26; } .h.org, .h.product { color: #5fe0d3; background: #4fd1c526; }
+.h.num { color: #ff9c87; background: #ff8a7326; } .h.other { color: #b9c4dc; background: #a3b1cc22; }
+.h.watch { background: #f5c54233; box-shadow: inset 0 -4px 0 #f5c542; }
+.foot { position: absolute; bottom: 30px; right: 60px; font-size: 18px; color: #ffffff55; }
+
+.back { position: absolute; left: 60px; bottom: 34px; font-size: 22px; padding: 10px 22px; border-radius: 12px;
+  background: #111521cc; border: 2px solid #2c3653; display: none; z-index: 5; }
+.app.playing .back, .app.listening .back { display: block; }
+
+.recap { position: absolute; left: 50%; top: 170px; transform: translate(-50%, 20px); width: 1100px; z-index: 6;
+  background: #0d1220f2; border: 2px solid #2c3653; border-radius: 22px; padding: 36px 44px; box-shadow: 0 20px 80px #000c;
+  opacity: 0; pointer-events: none; transition: opacity .4s, transform .4s; }
+.recap.on { opacity: 1; transform: translate(-50%, 0); }
+.recap .kicker { font-size: 24px; font-weight: 800; letter-spacing: .12em; color: #ffd166; text-transform: uppercase; }
+.recap h2 { font-size: 52px; line-height: 1.15; margin: 12px 0 14px; }
+.recap p { font-size: 30px; line-height: 1.45; color: #c9cfdd; }
+.recap ol { list-style: none; padding: 0; margin-top: 22px; display: grid; gap: 10px; }
+.recap li { font-size: 26px; background: #161d30; border-radius: 12px; padding: 12px 18px; display: flex; gap: 16px; }
+.recap li .t { color: #8b95ad; font-variant-numeric: tabular-nums; min-width: 80px; }
+
+.ask { position: absolute; left: 230px; bottom: 34px; font-size: 22px; padding: 10px 22px; border-radius: 12px;
+  background: #3b82f6; border: 2px solid #3b82f6; display: none; z-index: 5; }
+.app.playing .ask, .app.listening .ask { display: block; }
+.ask.rec { background: #ff4d4f; border-color: #ff4d4f; animation: pulse 1s infinite; }
+.ask-card { position: absolute; left: 60px; top: 270px; width: 860px; z-index: 6; background: #0d1220f2;
+  border: 2px solid #2c3653; border-radius: 22px; padding: 28px 36px; box-shadow: 0 20px 80px #000c;
+  opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .35s, transform .35s; }
+.ask-card.on { opacity: 1; transform: none; }
+.ask-card .kicker { font-size: 22px; font-weight: 800; letter-spacing: .12em; color: #8db4ff; text-transform: uppercase; }
+.ask-card .q { font-size: 36px; font-weight: 700; margin: 10px 0 12px; }
+.ask-card .a { font-size: 34px; line-height: 1.4; color: #e8ecf6; }
+.ask-card .bar { height: 6px; background: #1b2235; border-radius: 3px; overflow: hidden; display: none; margin-bottom: 8px; }
+.ask-card[data-state="listening"] .bar { display: block; }
+.ask-card .bar i { display: block; height: 100%; width: 0; background: #6fe0a8; transition: width .1s; }
+.ask-card[data-state="thinking"] .a::after { content: "thinking…"; color: #8b95ad; animation: pulse 1s infinite; }
+.ask-card .by { font-size: 18px; color: #8b95ad; margin-top: 14px; }
+
+.reel-btn { position: absolute; left: 560px; bottom: 34px; font-size: 22px; padding: 10px 22px; border-radius: 12px;
+  background: #111521cc; border: 2px solid #f5c542; display: none; z-index: 5; }
+.app:is(.playing, .listening) .reel-btn { display: block; }   /* always there; dimmed until the first moment */
+.reel-btn:not(.has) { opacity: .55; border-color: #5b6275; }
+.replay { position: absolute; top: 150px; left: 50%; transform: translateX(-50%); display: none; gap: 18px; align-items: center;
+  background: #000c; border: 2px solid #f5c542; border-radius: 14px; padding: 12px 26px; font-size: 30px; z-index: 6; }
+.app.reel .replay { display: flex; }
+.replay b { color: #f5c542; letter-spacing: .16em; }
+.replay i { color: #8b95ad; font-style: normal; font-size: 22px; }
+.app.reel .cc, .app.reel .toasts { opacity: .25; }
+
+.cc, .foot { pointer-events: none; }
+.hl-list { position: absolute; left: 60px; top: 250px; width: 820px; max-height: 620px; overflow: hidden; z-index: 9;
+  background: #0d1220f4; border: 2px solid #f5c542; border-radius: 22px; padding: 24px 28px; box-shadow: 0 20px 80px #000c;
+  display: none; }
+.hl-list.on { display: block; }
+.hl-list .kicker { font-size: 22px; font-weight: 800; letter-spacing: .12em; color: #f5c542; text-transform: uppercase; margin-bottom: 14px; }
+.hl-list .items { display: flex; flex-direction: column; gap: 10px; }
+.hl-list button { text-align: left; font-size: 26px; padding: 12px 18px; display: flex; gap: 16px; align-items: center; }
+.hl-list button .t { color: #8b95ad; font-variant-numeric: tabular-nums; min-width: 110px; font-size: 22px; }
+.hl-list button.all { background: #f5c542; color: #111; border-color: #f5c542; justify-content: center; }
+
+/* the start screen is only the start screen: nothing from the last game */
+.app:not(.playing):not(.listening) :is(.bug, .cc, .side, .src, .board, .crowd, .chips, .ask-card, .hl-list, .replay, .live, .foot) { display: none !important; }
+.app.reel 
+/* ---------------- the start screen: a hero for the focused game, rows of games by sport (TV-style) */
+.home { position: absolute; inset: 0; z-index: 4; background: #0a0c12; transition: opacity .4s; }
+.app.playing .home, .app.listening .home { opacity: 0; pointer-events: none; }
+.hero { position: absolute; left: 0; right: 0; top: 0; height: 600px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s ease; }
+.hero-bg.on { opacity: 1; }
+.hero-shade { position: absolute; inset: 0;
+  background: linear-gradient(90deg, #0a0c12 0%, #0a0c12f0 26%, #0a0c1299 48%, #0a0c1200 72%),
+              linear-gradient(0deg, #0a0c12 0%, #0a0c1200 40%), linear-gradient(180deg, #0a0c12aa 0%, #0a0c1200 22%); }
+.logo { position: absolute; top: calc(36px + var(--little-safe-top)); left: calc(110px + var(--little-safe-left)); font-size: 34px;
+  font-weight: 900; letter-spacing: -.01em; }
+.logo span { font-size: 20px; font-weight: 600; color: #9aa3b8; margin-left: 12px; }
+.hero-body { position: absolute; left: calc(110px + var(--little-safe-left)); bottom: 40px; width: 980px; }
+.hero-meta { display: flex; gap: 14px; align-items: center; font-size: 22px; color: #c3c9d8; }
+.hero-meta .chip { background: #3b82f6; color: #fff; font-weight: 800; padding: 6px 14px; border-radius: 8px; letter-spacing: .04em; }
+.hero-meta .chip:empty { display: none; }
+.hero h1 { font-size: 76px; font-weight: 900; line-height: 1.05; letter-spacing: -.02em; margin: 14px 0 10px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hero p { font-size: 28px; color: #c9cfdd; line-height: 1.35; max-width: 860px; margin-bottom: 26px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.buttons { display: flex; gap: 18px; }
+.buttons button { font-size: 26px; padding: 16px 30px; background: #ffffff22; border: 3px solid transparent; backdrop-filter: blur(6px); }
+.buttons button.play { background: #ffffff44; }
+.buttons button:focus, .buttons button.f { background: #fff; color: #0a0c12; border-color: #fff; transform: scale(1.06); box-shadow: 0 8px 30px #000a; }
+.rows-wrap { position: absolute; left: 0; right: 0; top: 600px; bottom: 0; overflow: hidden; }
+.rows { transition: transform .35s ease; padding: 14px 0 0 calc(110px + var(--little-safe-left)); }
+.row { height: 262px; }
+.row h3 { font-size: 26px; font-weight: 800; color: #e8ecf6; margin: 0 0 12px; }
+.strip { display: flex; gap: 22px; transition: transform .35s ease; padding: 10px 0; }
+.card { position: relative; flex: 0 0 340px; height: 191px; padding: 0; border: 0; border-radius: 14px; overflow: hidden;
+  background: #141a2b; transition: transform .2s ease, box-shadow .2s ease; }
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 12px; text-align: left;
+  background: linear-gradient(0deg, #000e 0%, #000a 55%, #0000 100%); }
+.card .t { font-size: 22px; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .s { font-size: 16px; color: #d0d6e4; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-height: 0; opacity: 0; transition: opacity .2s, max-height .2s; }
+.card:focus, .card.f, .card:hover { outline: none; transform: scale(1.08); box-shadow: 0 0 0 4px #fff, 0 14px 40px #000c; z-index: 2; border-color: transparent; }
+.card:focus .s, .card.f .s, .card:hover .s { max-height: 24px; opacity: 1; }
+
+.back, .ask, .reel-btn, .chips { z-index: 8; }
+/* captions: one box, two lines at most, kept clear of the broadcast's own scoreboard (bottom set by the page) */
+.cc { position: absolute; left: 50%; transform: translateX(-50%); width: 1480px; bottom: 60px; z-index: 3;
+  background: #000000b3; border-radius: 16px; padding: 14px 28px 16px; transition: bottom .3s, opacity .3s; }
+.cc:has(#now:empty):has(#prev:empty) { opacity: 0; }
+.prev { font-size: 26px; color: #c3c9d8; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prev:empty { display: none; }
+.now { font-size: 38px; font-weight: 600; line-height: 1.3; min-height: 50px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.now .cursor { display: inline-block; width: 4px; height: 34px; background: #f4f6fb; vertical-align: -5px; margin-left: 6px; animation: pulse 1s infinite; }
+/* the player controls stay on screen the whole game (viewers liked them always there) */
+/* suggested questions and answers live on the left, below where broadcasts put a top scoreboard */
+.chips { position: absolute; left: 60px; top: 270px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  z-index: 8; opacity: 0; transition: opacity .4s; pointer-events: none; }
+.chips.on { opacity: 1; pointer-events: auto; }
+.chips::before { content: "Ask"; font-size: 18px; font-weight: 800; letter-spacing: .14em; color: #8db4ff; text-transform: uppercase; }
+.chips button { font-size: 22px; padding: 10px 20px; border-radius: 999px; background: #0d1220e6; border: 2px solid #3b82f6; }
+.app.bug-bottom .chips, .app.bug-bottom .ask-card { top: 320px; }
+
+/* YouTube: its own player, full-screen under TV Watch's overlays */
+.yt { position: absolute; inset: 0; display: none; background: #000; }
+.yt iframe { width: 1920px; height: 1080px; border: 0; pointer-events: none; }
+.app.yt-on .yt { display: block; }
+.app.yt-on video { display: none; }
+.card.q { background: linear-gradient(135deg, #b91c1c, #7f1d1d); display: flex; align-items: center; justify-content: center; }
+.card.q .big { font-size: 64px; position: absolute; top: 34px; left: 0; right: 0; text-align: center; }
+.card .live-tag { position: absolute; top: 10px; left: 10px; background: #ff4d4f; color: #fff; font-size: 15px; font-weight: 800;
+  letter-spacing: .1em; padding: 3px 8px; border-radius: 6px; }
+
+/* transport: seek and pause, for clips and YouTube alike */
+.transport { position: absolute; left: 60px; right: 60px; bottom: 100px; z-index: 8; display: none; align-items: center; gap: 14px;
+  background: #0a0e18d9; border-radius: 16px; padding: 12px 18px; }
+.app.playing .transport { display: flex; }
+.transport button { font-size: 22px; padding: 8px 16px; border-radius: 10px; }
+.transport .bar { position: relative; flex: 1; height: 10px; background: #2a3248; border-radius: 5px; cursor: pointer; }
+.transport .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #ff4d4f; border-radius: 5px; width: 0; }
+.transport .bar b { position: absolute; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; left: 0; }
+.transport .bar.f b { box-shadow: 0 0 0 6px #ffffff55; }
+.transport .time { font-size: 20px; color: #c9cfdd; font-variant-numeric: tabular-nums; min-width: 150px; text-align: right; }
+
+/* the player panel: with no scoreboard at the bottom, a scrim holds the scrub bar and the buttons across the bottom and
+   the captions sit above it; with a bottom scoreboard, the buttons stack top-left and the scrub bar runs under them */
+.scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 250px; z-index: 7; pointer-events: none; opacity: 0;
+  background: linear-gradient(0deg, #000000e6 0%, #000000a6 55%, #00000000 100%); }
+.app:is(.playing, .listening):not(.bug-bottom) .scrim { opacity: 1; }
+.app.bug-bottom :is(.back, .ask, .reel-btn) { left: 60px; bottom: auto; }
+.app.bug-bottom .back { top: 40px; } .app.bug-bottom .ask { top: 100px; } .app.bug-bottom .reel-btn { top: 160px; }
+.app.bug-bottom .transport { top: 226px; bottom: auto; right: auto; width: 820px; padding: 8px 14px; }
+.app.bug-bottom .transport button { font-size: 18px; padding: 6px 12px; }
+.app.bug-bottom .transport .time { font-size: 17px; min-width: 120px; }
+/* YouTube: the broadcaster's bug is often top-centre, so ours moves under the chips at the top right */
+.app.yt-on .bug { left: auto; right: 60px; top: 170px; transform: scale(.8); transform-origin: top right; }
+.app.yt-on .side { top: 290px; }
+.hl-list .empty { font-size: 24px; color: #c9cfdd; line-height: 1.4; padding: 6px 4px 10px; }
+
+/* first launch on a TV: demos and models coming down once */
+#preload { position: absolute; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at 30% 20%, #18223d 0%, #0a0c12 70%); }
+#preload .box { width: 900px; }
+#preload .t { font-size: 48px; font-weight: 800; margin-bottom: 26px; }
+#preload .bar { height: 14px; border-radius: 7px; background: #1b2235; overflow: hidden; }
+#preload .bar i { display: block; height: 100%; width: 0; background: #3b82f6; transition: width .3s; }
+#preload .s { margin-top: 20px; font-size: 26px; color: #9aa3b8; }
+/* where Arc is listening from */
+.where { position: absolute; left: 60px; top: 30px; z-index: 9; font-size: 18px; font-weight: 700; color: #cfe6ff;
+  background: #0d1220cc; border: 1px solid #2c3653; border-radius: 999px; padding: 6px 14px; }
+.app:not(.playing):not(.listening) .where { top: auto; bottom: 26px; left: 60px; }
