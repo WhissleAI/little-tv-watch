@@ -10,7 +10,9 @@ export default defineConfig({
     host: "0.0.0.0", port: 7140, strictPort: true, allowedHosts: true,
     // cross-origin isolation, so Arc can run on several threads in the page (SharedArrayBuffer); `credentialless`
     // keeps YouTube's player and thumbnails loading (its iframe also carries the credentialless attribute)
-    headers: process.env.TVW_ISOLATE === "0" ? {} : {
+    // Off by default: a Little TV embeds the page so it can't be isolated anyway (measured: crossOriginIsolated false),
+    // and the policy then only gets in the way (a cached worker script without the header is refused). TVW_ISOLATE=1 to try.
+    headers: process.env.TVW_ISOLATE !== "1" ? {} : {
       "Cross-Origin-Opener-Policy": "same-origin",
       "Cross-Origin-Embedder-Policy": "credentialless",
     },

@@ -38,8 +38,27 @@ export async function preload() {
   const est = await navigator.storage?.estimate?.().catch(() => undefined);
   const cache = await caches.open(CACHE);
   const list = await assets();
+  // a file is fetched again only when the server's version of it changed (its ETag / Last-Modified), never otherwise
+  const tag = (h: Headers) => h.get("etag") || h.get("last-modified") || "";
+  // one-time: Arc's single-thread build was rebuilt (smaller start memory) after the first TVs cached it
+  try {
+    if (localStorage.getItem("tvw.cachefix") !== "1") {
+      for (const f of ["arcwasm/arc_st.wasm", "arcwasm/arc_st.mjs", "arcwasm/arc_worker.js"]) await cache.delete(new URL(f, location.href).href);
+      localStorage.setItem("tvw.cachefix", "1");
+    }
+  } catch { /* */ }
   const missing: string[] = [];
-  for (const u of list) if (!(await cache.match(u))) missing.push(u);
+  await Promise.all(list.map(async u => {
+    const hit = await cache.match(u);
+    if (!hit) { missing.push(u); return; }
+    const now = await fetch(u, { method: "HEAD", cache: "no-store" }).then(r => (r.ok ? tag(r.headers) : "")).catch(() => "");
+    if (!now) return;   // offline: keep what we have
+    const had = hit.headers.get("x-version");
+    if (had === null) {   // cached before files carried a version: they're current, so stamp them (no download)
+      const type = hit.headers.get("content-type") || "application/octet-stream";
+      await cache.put(u, new Response(await hit.blob(), { headers: { "content-type": type, "x-version": now } }));
+    } else if (had !== now) missing.push(u);   // changed on the server
+  }));
   console.log(`[preload] ${list.length - missing.length}/${list.length} cached · quota ${est ? Math.round((est.quota ?? 0) / 1e6) : "?"} MB, used ${est ? Math.round((est.usage ?? 0) / 1e6) : "?"} MB, persisted ${persisted}`);
   if (!missing.length) return;
 
@@ -69,7 +88,7 @@ export async function preload() {
       }
       if (skip) break;
       const type = r.headers.get("content-type") || "application/octet-stream";
-      await cache.put(u, new Response(new Blob(parts as BlobPart[], { type }), { headers: { "content-type": type } }));
+      await cache.put(u, new Response(new Blob(parts as BlobPart[], { type }), { headers: { "content-type": type, "x-version": tag(r.headers) } }));
     }
     console.log(`[preload] ${skip ? "skipped" : "done"}: ${Math.round(done / 1e6)} MB in ${Math.round((performance.now() - t0) / 1000)} s`);
   } catch (e) {
