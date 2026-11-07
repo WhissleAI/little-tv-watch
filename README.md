@@ -27,7 +27,8 @@ It works on recorded games, on YouTube games, and on whatever the TV's microphon
  │ • Little SDK: tools, answers, voice, ducking   │  events  └──────────────────────────────────────┘
  └───────────────────────────────────────────────┘
    app/src/engine/ is the same service logic ported to TypeScript, with Arc (arc-wasm/), Arc Tagger (ONNX in the
-   page) and the director running in the page: the TV then needs nothing beside it.
+   page) and the director able to run in the page (opt-in: ?local). Today's Little TV gives the page one thread,
+   where Arc runs ~3x slower than real time, so on the TV Arc runs on the box beside it (automatic fallback).
 ```
 
 ### Components
