@@ -1,0 +1,71 @@
+{
+ "id": "nhl_car_vgk",
+ "sport": "nhl",
+ "title": "Hurricanes v Golden Knights",
+ "subtitle": "Stanley Cup Final, Game 6: Carolina's shutout",
+ "start": 0,
+ "duration": 360,
+ "layout": {
+  "period": [
+   0.082,
+   0.06,
+   0.115,
+   0.089
+  ],
+  "clock": [
+   0.072,
+   0.108,
+   0.122,
+   0.139
+  ],
+  "a_name": [
+   0.174,
+   0.061,
+   0.215,
+   0.088
+  ],
+  "a": [
+   0.222,
+   0.056,
+   0.244,
+   0.095
+  ],
+  "b_name": [
+   0.174,
+   0.11,
+   0.215,
+   0.139
+  ],
+  "b": [
+   0.222,
+   0.105,
+   0.244,
+   0.146
+  ]
+ },
+ "roster": "# Carolina Hurricanes v Vegas Golden Knights (Stanley Cup Final, Game 6)\nCarolina Hurricanes|team|Hurricanes,Carolina,Canes\nVegas Golden Knights|team|Golden Knights,Vegas\nBrandon Bussi|person|Bussi\nFrederik Andersen|person|Andersen\nPyotr Kochetkov|person|Kochetkov\nJackson Blake|person|Blake\nSebastian Aho|person|Aho\nSeth Jarvis|person|Jarvis\nAndrei Svechnikov|person|Svechnikov\nNikolaj Ehlers|person|Ehlers\nJordan Staal|person|Staal\nJordan Martinook|person|Martinook\nLogan Stankoven|person|Stankoven\nTaylor Hall|person|Hall\nJesperi Kotkaniemi|person|Kotkaniemi\nEric Robinson|person|Robinson\nJaccob Slavin|person|Slavin\nBrent Burns|person|Burns\nShayne Gostisbehere|person|Gostisbehere\nJalen Chatfield|person|Chatfield\nSean Walker|person|Walker\nK'Andre Miller|person|Miller\nAlexander Nikishin|person|Nikishin\nRod Brind'Amour|person|Brind'Amour\nAdin Hill|person|Hill\nAkira Schmid|person|Schmid\nJack Eichel|person|Eichel\nMitch Marner|person|Marner\nMark Stone|person|Stone\nWilliam Karlsson|person|Karlsson\nTomas Hertl|person|Hertl\nIvan Barbashev|person|Barbashev\nPavel Dorofeyev|person|Dorofeyev\nBrett Howden|person|Howden\nKeegan Kolesar|person|Kolesar\nReilly Smith|person|Smith\nShea Theodore|person|Theodore\nAlex Pietrangelo|person|Pietrangelo\nNoah Hanifin|person|Hanifin\nBrayden McNabb|person|McNabb\nZach Whitecloud|person|Whitecloud\nBruce Cassidy|person|Cassidy",
+ "board_changes": [
+  {
+   "t": 18,
+   "score": [
+    0,
+    0
+   ]
+  },
+  {
+   "t": 37,
+   "score": [
+    1,
+    0
+   ]
+  },
+  {
+   "t": 337,
+   "score": [
+    2,
+    0
+   ]
+  }
+ ],
+ "broadcaster": "ESPN / ABC (NHL)"
+}

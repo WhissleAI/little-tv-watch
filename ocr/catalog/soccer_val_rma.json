@@ -1,0 +1,52 @@
+{
+ "id": "soccer_val_rma",
+ "sport": "soccer",
+ "title": "Valencia v Real Madrid",
+ "subtitle": "Madrid turn it around",
+ "start": 0,
+ "duration": 208,
+ "layout": {
+  "a_name": [
+   0.053,
+   0.027,
+   0.07,
+   0.048
+  ],
+  "a": [
+   0.078,
+   0.022,
+   0.097,
+   0.052
+  ],
+  "b_name": [
+   0.053,
+   0.067,
+   0.07,
+   0.086
+  ],
+  "b": [
+   0.078,
+   0.062,
+   0.097,
+   0.092
+  ]
+ },
+ "roster": "# Valencia v Real Madrid (LaLiga)\nValencia|team|\nReal Madrid|team|Madrid\nThibaut Courtois|person|Courtois\nDani Carvajal|person|Carvajal\nEder Militao|person|Militao\nAntonio Rudiger|person|Rudiger\nDean Huijsen|person|Huijsen\nAlvaro Carreras|person|Carreras\nTrent Alexander-Arnold|person|Alexander-Arnold\nFerland Mendy|person|Mendy\nFederico Valverde|person|Valverde\nAurelien Tchouameni|person|Tchouameni\nJude Bellingham|person|Bellingham\nEduardo Camavinga|person|Camavinga\nArda Guler|person|Guler\nFranco Mastantuono|person|Mastantuono\nVinicius Junior|person|Junior\nKylian Mbappe|person|Mbappe\nRodrygo|person|\nBrahim Diaz|person|Diaz\nGonzalo Garcia|person|Garcia\nXabi Alonso|person|Alonso\nJulen Agirrezabala|person|Agirrezabala\nStole Dimitrievski|person|Dimitrievski\nJose Gaya|person|Gaya\nCesar Tarrega|person|Tarrega\nMouctar Diakhaby|person|Diakhaby\nDimitri Foulquier|person|Foulquier\nJavi Guerra|person|Guerra\nPepelu|person|\nAndre Almeida|person|Almeida\nDiego Lopez|person|Lopez\nLuis Rioja|person|Rioja\nHugo Duro|person|Duro\nArnaut Danjuma|person|Danjuma\nLucas Beltran|person|Beltran\nCarlos Corberan|person|Corberan",
+ "board_changes": [
+  {
+   "t": 155,
+   "score": [
+    1,
+    1
+   ]
+  },
+  {
+   "t": 175,
+   "score": [
+    1,
+    2
+   ]
+  }
+ ],
+ "broadcaster": "LaLiga (fan re-upload of extended highlights)"
+}

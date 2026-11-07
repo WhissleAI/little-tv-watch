@@ -1,0 +1,85 @@
+{
+ "id": "nhl_fla_bos",
+ "sport": "nhl",
+ "title": "Panthers v Bruins",
+ "subtitle": "Back-and-forth third period, winner with 25 seconds left",
+ "start": 0,
+ "duration": 270,
+ "layout": {
+  "period": [
+   0.088,
+   0.067,
+   0.119,
+   0.094
+  ],
+  "clock": [
+   0.08,
+   0.114,
+   0.127,
+   0.146
+  ],
+  "a_name": [
+   0.181,
+   0.066,
+   0.215,
+   0.096
+  ],
+  "a": [
+   0.226,
+   0.062,
+   0.245,
+   0.098
+  ],
+  "b_name": [
+   0.18,
+   0.114,
+   0.216,
+   0.146
+  ],
+  "b": [
+   0.226,
+   0.11,
+   0.245,
+   0.148
+  ]
+ },
+ "roster": "# Florida Panthers v Boston Bruins (NHL)\nFlorida Panthers|team|Panthers,Florida\nBoston Bruins|team|Bruins,Boston\nSergei Bobrovsky|person|Bobrovsky\nAleksander Barkov|person|Barkov\nMatthew Tkachuk|person|Tkachuk\nSam Reinhart|person|Reinhart\nCarter Verhaeghe|person|Verhaeghe\nSam Bennett|person|Bennett\nBrad Marchand|person|Marchand\nAnton Lundell|person|Lundell\nEetu Luostarinen|person|Luostarinen\nEvan Rodrigues|person|Rodrigues\nGustav Forsling|person|Forsling\nAaron Ekblad|person|Ekblad\nSeth Jones|person|Jones\nNiko Mikkola|person|Mikkola\nDmitry Kulikov|person|Kulikov\nJonah Gadjovich|person|Gadjovich\nA.J. Greer|person|Greer\nPaul Maurice|person|Maurice\nJeremy Swayman|person|Swayman\nJoonas Korpisalo|person|Korpisalo\nCharlie McAvoy|person|McAvoy\nHampus Lindholm|person|Lindholm\nNikita Zadorov|person|Zadorov\nMason Lohrei|person|Lohrei\nDavid Pastrnak|person|Pastrnak\nElias Lindholm|person|Lindholm\nPavel Zacha|person|Zacha\nMorgan Geekie|person|Geekie\nCasey Mittelstadt|person|Mittelstadt\nViktor Arvidsson|person|Arvidsson\nCharlie Coyle|person|Coyle\nTanner Jeannot|person|Jeannot\nMark Kastelic|person|Kastelic\nMarco Sturm|person|Sturm",
+ "board_changes": [
+  {
+   "t": 25,
+   "score": [
+    2,
+    1
+   ]
+  },
+  {
+   "t": 50,
+   "score": [
+    2,
+    2
+   ]
+  },
+  {
+   "t": 101,
+   "score": [
+    3,
+    2
+   ]
+  },
+  {
+   "t": 191,
+   "score": [
+    3,
+    3
+   ]
+  },
+  {
+   "t": 254,
+   "score": [
+    4,
+    3
+   ]
+  }
+ ],
+ "broadcaster": "ESPN (NHL)"
+}

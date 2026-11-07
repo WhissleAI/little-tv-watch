@@ -1,0 +1,95 @@
+{
+ "id": "cricket_ashes_mcg",
+ "sport": "cricket",
+ "title": "Australia v England",
+ "subtitle": "Fourth Ashes Test, MCG: nine down on day one",
+ "start": 0,
+ "duration": 225,
+ "layout": {
+  "a_name": [
+   0.022,
+   0.869,
+   0.071,
+   0.898
+  ],
+  "wr": [
+   0.078,
+   0.88,
+   0.235,
+   0.94
+  ],
+  "overs": [
+   0.145,
+   0.946,
+   0.2,
+   0.976
+  ]
+ },
+ "roster": "# Australia v England, Fourth Ashes Test, MCG (Day One)\nAustralia|team|Aussies\nEngland|team|\nUsman Khawaja|person|Khawaja\nJake Weatherald|person|Weatherald\nMarnus Labuschagne|person|Labuschagne\nSteve Smith|person|Smith\nTravis Head|person|Head\nCameron Green|person|Green\nAlex Carey|person|Carey\nMitchell Starc|person|Starc\nMichael Neser|person|Neser\nScott Boland|person|Boland\nJhye Richardson|person|Richardson\nNathan Lyon|person|Lyon\nZak Crawley|person|Crawley\nBen Duckett|person|Duckett\nOllie Pope|person|Pope\nJoe Root|person|Root\nHarry Brook|person|Brook\nBen Stokes|person|Stokes\nJamie Smith|person|Smith\nGus Atkinson|person|Atkinson\nBrydon Carse|person|Carse\nJofra Archer|person|Archer\nJosh Tongue|person|Tongue\nWill Jacks|person|Jacks",
+ "board_changes": [
+  {
+   "t": 16,
+   "score": [
+    31,
+    1
+   ]
+  },
+  {
+   "t": 26,
+   "score": [
+    34,
+    2
+   ]
+  },
+  {
+   "t": 40,
+   "score": [
+    35,
+    3
+   ]
+  },
+  {
+   "t": 68,
+   "score": [
+    66,
+    4
+   ]
+  },
+  {
+   "t": 102,
+   "score": [
+    91,
+    5
+   ]
+  },
+  {
+   "t": 117,
+   "score": [
+    91,
+    6
+   ]
+  },
+  {
+   "t": 177,
+   "score": [
+    152,
+    7
+   ]
+  },
+  {
+   "t": 206,
+   "score": [
+    152,
+    8
+   ]
+  },
+  {
+   "t": 220,
+   "score": [
+    152,
+    9
+   ]
+  }
+ ],
+ "broadcaster": "Fox Cricket (cricket.com.au)"
+}

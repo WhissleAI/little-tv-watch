@@ -1,0 +1,41 @@
+{
+ "id": "nfl_main",
+ "sport": "nfl",
+ "title": "Chiefs v Broncos",
+ "subtitle": "4th quarter",
+ "start": 0,
+ "duration": 1586,
+ "layout": {
+  "a": [
+   0.36,
+   0.845,
+   0.422,
+   0.925
+  ],
+  "period": [
+   0.43,
+   0.9,
+   0.47,
+   0.945
+  ],
+  "clock": [
+   0.488,
+   0.9,
+   0.538,
+   0.945
+  ],
+  "b": [
+   0.58,
+   0.845,
+   0.642,
+   0.925
+  ]
+ },
+ "teams": [
+  "KC",
+  "DEN"
+ ],
+ "roster": "",
+ "board_changes": [],
+ "broadcaster": "CBS"
+}

@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+public/clips
+public/catalog
+server/scgrab/frame.jpg
+server/scgrab/.scgrab.tmp.jpg
+server/scgrab/scgrab
+public/arctag
+public/ort
+public/demos

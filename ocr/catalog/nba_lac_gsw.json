@@ -1,0 +1,224 @@
+{
+ "id": "nba_lac_gsw",
+ "sport": "nba",
+ "title": "Clippers at Warriors",
+ "subtitle": "NBC · a close game swings in the 2nd and 3rd",
+ "start": 0,
+ "duration": 300.0,
+ "layout": {
+  "a": [
+   0.412,
+   0.86,
+   0.453,
+   0.918
+  ],
+  "clock": [
+   0.476,
+   0.876,
+   0.522,
+   0.905
+  ],
+  "period": [
+   0.469,
+   0.903,
+   0.496,
+   0.929
+  ],
+  "b": [
+   0.547,
+   0.86,
+   0.588,
+   0.918
+  ]
+ },
+ "teams": [
+  "LAC",
+  "GSW"
+ ],
+ "roster": "Los Angeles Clippers|team|Clippers,LA\nJames Harden|person|Harden\nKawhi Leonard|person|Kawhi,Leonard\nIvica Zubac|person|Zubac\nJohn Collins|person|Collins\nBradley Beal|person|Beal\nDerrick Jones Jr.|person|Derrick Jones\nKris Dunn|person|Dunn\nTyronn Lue|person|Lue\nGolden State Warriors|team|Warriors,Golden State,Dubs\nStephen Curry|person|Steph,Curry\nJimmy Butler|person|Butler,Jimmy\nDraymond Green|person|Draymond\nBrandin Podziemski|person|Podziemski,Podz\nMoses Moody|person|Moody\nBuddy Hield|person|Hield,Buddy\nJonathan Kuminga|person|Kuminga\nGary Payton II|person|Payton,GP2\nSteve Kerr|person|Kerr",
+ "board_changes": [
+  {
+   "t": 1,
+   "score": [
+    44,
+    46
+   ]
+  },
+  {
+   "t": 4,
+   "score": [
+    46,
+    46
+   ]
+  },
+  {
+   "t": 17,
+   "score": [
+    49,
+    46
+   ]
+  },
+  {
+   "t": 59,
+   "score": [
+    51,
+    46
+   ]
+  },
+  {
+   "t": 70,
+   "score": [
+    51,
+    49
+   ]
+  },
+  {
+   "t": 71,
+   "score": [
+    53,
+    49
+   ]
+  },
+  {
+   "t": 77,
+   "score": [
+    53,
+    51
+   ]
+  },
+  {
+   "t": 88,
+   "score": [
+    55,
+    53
+   ]
+  },
+  {
+   "t": 97,
+   "score": [
+    55,
+    56
+   ]
+  },
+  {
+   "t": 113,
+   "score": [
+    57,
+    56
+   ]
+  },
+  {
+   "t": 116,
+   "score": [
+    57,
+    58
+   ]
+  },
+  {
+   "t": 120,
+   "score": [
+    57,
+    60
+   ]
+  },
+  {
+   "t": 133,
+   "score": [
+    57,
+    63
+   ]
+  },
+  {
+   "t": 143,
+   "score": [
+    59,
+    63
+   ]
+  },
+  {
+   "t": 154,
+   "score": [
+    61,
+    63
+   ]
+  },
+  {
+   "t": 162,
+   "score": [
+    61,
+    66
+   ]
+  },
+  {
+   "t": 173,
+   "score": [
+    61,
+    68
+   ]
+  },
+  {
+   "t": 191,
+   "score": [
+    63,
+    68
+   ]
+  },
+  {
+   "t": 232,
+   "score": [
+    64,
+    68
+   ]
+  },
+  {
+   "t": 233,
+   "score": [
+    64,
+    80
+   ]
+  },
+  {
+   "t": 241,
+   "score": [
+    66,
+    80
+   ]
+  },
+  {
+   "t": 245,
+   "score": [
+    68,
+    80
+   ]
+  },
+  {
+   "t": 252,
+   "score": [
+    68,
+    83
+   ]
+  },
+  {
+   "t": 265,
+   "score": [
+    68,
+    86
+   ]
+  },
+  {
+   "t": 274,
+   "score": [
+    68,
+    88
+   ]
+  },
+  {
+   "t": 294,
+   "score": [
+    68,
+    90
+   ]
+  }
+ ],
+ "broadcaster": "NBC"
+}

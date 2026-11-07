@@ -1,0 +1,32 @@
+# Arsenal v Bournemouth (Premier League)
+Arsenal|team|Gunners
+Bournemouth|team|Cherries
+Bukayo Saka|person|Saka
+Martin Odegaard|person|Odegaard
+William Saliba|person|Saliba
+Gabriel Magalhaes|person|Gabriel
+Ben White|person|White
+Oleksandr Zinchenko|person|Zinchenko
+Reiss Nelson|person|Nelson
+Emile Smith Rowe|person|Smith Rowe
+Kai Havertz|person|Havertz
+Declan Rice|person|Rice
+Gabriel Jesus|person|Jesus
+Leandro Trossard|person|Trossard
+Jakub Kiwior|person|Kiwior
+Takehiro Tomiyasu|person|Tomiyasu
+Jorginho|person|Jorginho
+David Raya|person|Raya
+Mikel Arteta|person|Arteta
+Philip Billing|person|Billing
+Neto|person|Neto
+Dominic Solanke|person|Solanke
+Antoine Semenyo|person|Semenyo
+Adam Smith|person|Adam Smith
+Lloyd Kelly|person|Kelly
+Marcos Senesi|person|Senesi
+Illia Zabarnyi|person|Zabarnyi
+Ryan Christie|person|Christie
+Lewis Cook|person|Cook
+Andoni Iraola|person|Iraola
+Emirates Stadium|place|Emirates

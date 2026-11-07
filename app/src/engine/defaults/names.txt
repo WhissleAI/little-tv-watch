@@ -1,0 +1,9 @@
+# Watchlist: Name|kind|alias1,alias2  (kinds: person team organization place work_product event_name other)
+# Arc links what it hears to these and biases its decoder towards them.
+Stephen Curry|person|Steph,Curry
+LeBron James|person|LeBron
+Golden State Warriors|team|Warriors,Golden State
+Los Angeles Lakers|team|Lakers
+Bukayo Saka|person|Saka
+Arsenal|team|Gunners
+Chelsea|team|Blues

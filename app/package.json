@@ -1,0 +1,23 @@
+{
+  "name": "little-tvwatch",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "answers": "node server/answers.ts"
+  },
+  "dependencies": {
+    "@kabletv/little-sdk": "^0.39.1",
+    "onnxruntime-web": "^1.31.1",
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "onnxruntime-node": "^1.31.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0"
+  }
+}

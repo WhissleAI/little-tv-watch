@@ -1,0 +1,15 @@
+# The demo watchlist plus the eval's other players and teams (so every expected name can be linked)
+Stephen Curry|person|Steph,Curry
+LeBron James|person|LeBron
+Golden State Warriors|team|Warriors,Golden State
+Los Angeles Lakers|team|Lakers
+Anthony Davis|person|Davis
+Draymond Green|person|Draymond
+Bukayo Saka|person|Saka
+Arsenal|team|Gunners
+Chelsea|team|Blues
+Patrick Mahomes|person|Mahomes
+Travis Kelce|person|Kelce
+Kansas City Chiefs|team|Chiefs,Kansas City
+Josh Allen|person|Allen
+Buffalo Bills|team|Bills

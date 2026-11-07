@@ -1,0 +1,91 @@
+{
+ "id": "nba_phi_lal",
+ "sport": "nba",
+ "title": "76ers at Lakers",
+ "subtitle": "Spectrum SN · a wild ending",
+ "start": 0,
+ "duration": 359.9,
+ "layout": {
+  "a": [
+   0.798,
+   0.79,
+   0.828,
+   0.822
+  ],
+  "b": [
+   0.894,
+   0.788,
+   0.924,
+   0.82
+  ],
+  "period": [
+   0.75,
+   0.848,
+   0.781,
+   0.879
+  ],
+  "clock": [
+   0.812,
+   0.848,
+   0.856,
+   0.879
+  ]
+ },
+ "teams": [
+  "LAL",
+  "PHI"
+ ],
+ "roster": "Los Angeles Lakers|team|Lakers,LA\nLeBron James|person|LeBron,James\nLuka Doncic|person|Luka,Doncic\nAustin Reaves|person|Reaves\nDeandre Ayton|person|Ayton\nRui Hachimura|person|Hachimura,Rui\nMarcus Smart|person|Smart\nJake LaRavia|person|LaRavia\nJaxson Hayes|person|Hayes\nJJ Redick|person|Redick\nPhiladelphia 76ers|team|76ers,Sixers,Philly\nJoel Embiid|person|Embiid\nTyrese Maxey|person|Maxey\nPaul George|person|George,PG\nVJ Edgecombe|person|Edgecombe\nKelly Oubre Jr.|person|Oubre\nQuentin Grimes|person|Grimes\nNick Nurse|person|Nurse",
+ "board_changes": [
+  {
+   "t": 1,
+   "score": [
+    105,
+    100
+   ]
+  },
+  {
+   "t": 41,
+   "score": [
+    105,
+    103
+   ]
+  },
+  {
+   "t": 146,
+   "score": [
+    105,
+    105
+   ]
+  },
+  {
+   "t": 167,
+   "score": [
+    108,
+    105
+   ]
+  },
+  {
+   "t": 219,
+   "score": [
+    110,
+    105
+   ]
+  },
+  {
+   "t": 310,
+   "score": [
+    110,
+    108
+   ]
+  },
+  {
+   "t": 351,
+   "score": [
+    112,
+    108
+   ]
+  }
+ ],
+ "broadcaster": "Spectrum SportsNet"
+}

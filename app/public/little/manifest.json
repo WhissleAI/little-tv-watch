@@ -1,0 +1,840 @@
+{
+  "id": "tv-watch",
+  "title": "TV Watch",
+  "description": "Live game companion powered by Arc: it listens to the game, keeps the score and clock, captions the commentary and calls out big moments. Launch when the viewer wants the score, wants to know what they missed, wants alerts for a player, or wants live captions for a game (NBA, NFL, NHL, soccer, cricket, esports, news).",
+  "launchSchema": {
+    "type": "object",
+    "properties": {
+      "sport": {
+        "type": "string",
+        "enum": [
+          "nba",
+          "nfl",
+          "nhl",
+          "soccer",
+          "cricket",
+          "esports",
+          "news",
+          "talk"
+        ],
+        "description": "The sport or show the viewer is watching, if they said it; omit otherwise."
+      }
+    },
+    "additionalProperties": false
+  },
+  "guide": "You are the viewer's friend on the couch who never misses a play. TV Watch hears the game through Arc and shows the score, the clock, live captions and alerts. Answer score and 'what did I miss' questions from the on-screen Scoreboard readout or the catch_up tool, never from memory. Keep spoken lines to one short sentence; the game is still on. TV Watch already says big alerts out loud itself (an 'alert' event with spoken: true): don't repeat those. For an alert with spoken: false, stay quiet unless the viewer asked to watch that player.",
+  "capabilities": [
+    {
+      "name": "media.mic",
+      "reason": "Hear the game on the TV so Arc can caption it and keep the score"
+    },
+    {
+      "name": "voice.say",
+      "reason": "Call out big moments out loud"
+    },
+    {
+      "name": "voice.config",
+      "reason": "Help the TV recognise player and team names"
+    },
+    {
+      "name": "sense.speech",
+      "reason": "Turn the game down while you talk to the TV"
+    }
+  ],
+  "tools": [
+    {
+      "name": "watch_player",
+      "description": "Alert the viewer every time a player, team or person is mentioned on the broadcast. ALWAYS call this for 'tell me whenever X is mentioned', 'let me know when X comes up', 'tell me when Curry is on', 'watch for LeBron', 'ping me if Saka scores'.",
+      "authority": "mutate",
+      "params": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The full name as the viewer said it, e.g. \"Stephen Curry\"."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "unwatch_player",
+      "description": "Stop alerts for a player or team the viewer is watching.",
+      "authority": "mutate",
+      "params": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "A name from the Watching list."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "switch_sport",
+      "description": "Tell Arc which sport or show is on, so the score, clock and alerts follow that sport's rules. Use when the viewer changes channel or says what they are watching.",
+      "authority": "mutate",
+      "params": {
+        "type": "object",
+        "properties": {
+          "sport": {
+            "type": "string",
+            "enum": [
+              "nba",
+              "nfl",
+              "nhl",
+              "soccer",
+              "cricket",
+              "esports",
+              "news",
+              "talk"
+            ],
+            "description": "The sport or show."
+          }
+        },
+        "required": [
+          "sport"
+        ]
+      }
+    },
+    {
+      "name": "catch_up",
+      "description": "What the viewer missed: the score changes, key moments and who was talked about in the last 30 minutes. Use for 'what did I miss', 'catch me up', 'what happened while I was away'.",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "listen_to_tv",
+      "description": "Start listening to the TV through the microphone (live mode). Use when the viewer says the game is on another screen or asks TV Watch to listen.",
+      "authority": "mutate",
+      "params": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "play_demo",
+      "description": "Play a recorded game from the Demo games on the start screen, with Arc captioning and scoring it live. Use when the viewer asks for a demo, a sport, or a game by name ('play the Arsenal late winner', 'show me some hockey').",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {
+          "clip": {
+            "type": "string",
+            "description": "The clip's id from the Demo games region, or words from its title."
+          },
+          "sport": {
+            "type": "string",
+            "enum": [
+              "nba",
+              "nfl",
+              "nhl",
+              "soccer",
+              "cricket"
+            ],
+            "description": "A sport, when the viewer named no game."
+          }
+        }
+      }
+    },
+    {
+      "name": "stop",
+      "description": "Stop listening and stop the clip.",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "ask_game",
+      "description": "Answer a question about the game being watched from what TV Watch knows: the scoreboard's scoring plays, points credited to players from the commentary (a guess: say 'by my count'), ties, lead changes, biggest lead, runs and who has been talked about. Use for 'how many points does Brunson have', 'when did they tie it', 'who's been hot', 'what's the biggest lead'. Pass the viewer's question; without one, TV Watch listens for it itself.",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The viewer's question, in their words."
+          }
+        }
+      }
+    },
+    {
+      "name": "highlights",
+      "description": "Replay the big moments of the game so far (scores, goals, wickets, lead changes) as a quick highlight reel, then return to the live game. Use for 'show me the highlights', 'replay that', 'what did the tie look like'.",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "watch_youtube",
+      "description": "Find a game on YouTube and watch it inside TV Watch, with Arc captioning it, alerts, questions and highlights. Use for 'put on the Lakers game on YouTube', 'find Arsenal highlights', 'show me a live cricket match'. Searches YouTube for the query and plays the best result (or the result number the viewer picked from the YouTube row).",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "What to search for, e.g. 'Lakers vs Warriors full game highlights'. Omit to play from the results already on screen."
+          },
+          "live": {
+            "type": "boolean",
+            "description": "Only live streams."
+          },
+          "pick": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Which result on screen (1 = first)."
+          }
+        }
+      }
+    },
+    {
+      "name": "seek",
+      "description": "Move through the game being played (a demo clip or YouTube): skip ahead or back, jump to a time, pause or play. Use for 'skip ahead two minutes', 'go back 30 seconds', 'pause', 'jump to the last minute'.",
+      "authority": "read",
+      "params": {
+        "type": "object",
+        "properties": {
+          "seconds": {
+            "type": "number",
+            "description": "Relative: +120 skips two minutes ahead, -30 goes back."
+          },
+          "to": {
+            "type": "number",
+            "description": "Absolute position in seconds from the start."
+          },
+          "pause": {
+            "type": "boolean"
+          },
+          "play": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  ],
+  "answers": {
+    "version": 1,
+    "endpoint": "/little-answers",
+    "queries": [
+      {
+        "name": "score",
+        "description": "The live score and game clock of the game TV Watch is following right now, read off the broadcast's own scoreboard when it is on screen, else from the commentary. Use for 'what's the score', 'who's winning', 'how long is left'. Empty when nothing is being followed.",
+        "access": "public",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sport",
+            "sport_name",
+            "listening",
+            "source",
+            "launch"
+          ],
+          "properties": {
+            "sport": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "sport_name": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "listening": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string",
+              "enum": [
+                "scoreboard",
+                "commentary",
+                "none"
+              ],
+              "description": "Where the score came from: the on-screen scoreboard (most reliable), what the commentator said, or nothing yet."
+            },
+            "score_text": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "team_a": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "team_b": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "points_a": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "points_b": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "leader": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "clock": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "last_line": {
+              "type": "string",
+              "maxLength": 400
+            },
+            "launch": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sport"
+              ],
+              "properties": {
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "nba",
+                    "nfl",
+                    "nhl",
+                    "soccer",
+                    "cricket",
+                    "esports",
+                    "news",
+                    "talk"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "refresh": {
+          "minIntervalSeconds": 30,
+          "maxRefreshes": 120
+        }
+      },
+      {
+        "name": "catch_up",
+        "description": "What the viewer missed in the game TV Watch is following: score changes, key moments (scores, goals, big plays, the game coming back from a break) with times, a short recap when available, and who the commentators talked about most. Covers up to the last 30 minutes.",
+        "access": "public",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sport",
+            "sport_name",
+            "minutes",
+            "moments",
+            "talked_about",
+            "launch"
+          ],
+          "properties": {
+            "sport": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "sport_name": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "minutes": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1440
+            },
+            "score_text": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "recap": {
+              "type": "string",
+              "maxLength": 1200
+            },
+            "moments": {
+              "type": "array",
+              "maxItems": 10,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "time",
+                  "title"
+                ],
+                "properties": {
+                  "time": {
+                    "type": "string",
+                    "maxLength": 8
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 160
+                  },
+                  "detail": {
+                    "type": "string",
+                    "maxLength": 400
+                  }
+                }
+              }
+            },
+            "talked_about": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "mentions"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "kind": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "mentions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100000
+                  }
+                }
+              }
+            },
+            "launch": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sport"
+              ],
+              "properties": {
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "nba",
+                    "nfl",
+                    "nhl",
+                    "soccer",
+                    "cricket",
+                    "esports",
+                    "news",
+                    "talk"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "now_playing",
+        "description": "What TV Watch is listening to right now: the sport or show, whether it is hearing audio (the TV's microphone or a demo clip), the latest line of commentary, and the players the viewer asked to be alerted about.",
+        "access": "public",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sport",
+            "sport_name",
+            "listening",
+            "status",
+            "watching",
+            "launch"
+          ],
+          "properties": {
+            "sport": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "sport_name": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "listening": {
+              "type": "boolean"
+            },
+            "status": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "last_line": {
+              "type": "string",
+              "maxLength": 400
+            },
+            "watching": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "launch": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sport"
+              ],
+              "properties": {
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "nba",
+                    "nfl",
+                    "nhl",
+                    "soccer",
+                    "cricket",
+                    "esports",
+                    "news",
+                    "talk"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "game_facts",
+        "description": "Game facts from the scoreboard and live commentary: score, clock, scoring plays with times, per-player points, ties, lead changes, biggest lead, most talked about. Per-player points are credited from the commentary before each score: call them a guess from the commentary, not official stats.",
+        "access": "public",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "question": {
+              "type": "string",
+              "maxLength": 300,
+              "description": "The viewer's question, e.g. 'how many points does Brunson have?' or 'when did they tie it?'. Optional; it only narrows which facts come back."
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sport",
+            "teams",
+            "score_source",
+            "scoring_plays",
+            "players_heard",
+            "credit_note",
+            "ties",
+            "lead_changes",
+            "biggest_lead",
+            "most_talked_about",
+            "watching",
+            "launch"
+          ],
+          "properties": {
+            "sport": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "teams": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "type": "string",
+                "maxLength": 40
+              }
+            },
+            "score": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "clock": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "score_source": {
+              "type": "string",
+              "maxLength": 60
+            },
+            "scoring_plays": {
+              "type": "array",
+              "maxItems": 25,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "score",
+                  "what",
+                  "team"
+                ],
+                "properties": {
+                  "clock": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "score": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "what": {
+                    "type": "string",
+                    "maxLength": 60
+                  },
+                  "by": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "team": {
+                    "type": "string",
+                    "maxLength": 40
+                  }
+                }
+              }
+            },
+            "players_heard": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "points",
+                  "plays"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "points": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999
+                  },
+                  "plays": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999
+                  }
+                }
+              }
+            },
+            "credit_note": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "ties": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "lead_changes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "biggest_lead": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "team",
+                  "points"
+                ],
+                "properties": {
+                  "team": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "points": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999
+                  }
+                }
+              }
+            },
+            "most_talked_about": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "mentions"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "mentions": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100000
+                  }
+                }
+              }
+            },
+            "recent_commentary": {
+              "type": "string",
+              "maxLength": 2500
+            },
+            "watching": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            },
+            "launch": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "sport"
+              ],
+              "properties": {
+                "sport": {
+                  "type": "string",
+                  "enum": [
+                    "nba",
+                    "nfl",
+                    "nhl",
+                    "soccer",
+                    "cricket",
+                    "esports",
+                    "news",
+                    "talk"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "watch_player",
+        "title": "Watch a player",
+        "description": "Adds a player, team or person to TV Watch's alert list, so the viewer is alerted every time the broadcast mentions them. Undo with unwatch_player.",
+        "authority": "mutate",
+        "access": "public",
+        "execution": "immediate",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "minLength": 2,
+              "maxLength": 80
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "watching"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "watching": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "unwatch_player",
+        "title": "Stop watching a player",
+        "description": "Removes a name from TV Watch's alert list.",
+        "authority": "mutate",
+        "access": "public",
+        "execution": "immediate",
+        "inputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "minLength": 2,
+              "maxLength": 80
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "removed",
+            "watching"
+          ],
+          "properties": {
+            "removed": {
+              "type": "boolean"
+            },
+            "watching": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "maxLength": 80
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

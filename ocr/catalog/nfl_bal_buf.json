@@ -1,0 +1,68 @@
+{
+ "id": "nfl_bal_buf",
+ "sport": "nfl",
+ "title": "Ravens at Bills",
+ "subtitle": "Sunday Night Football · the final drive and a walk-off field goal",
+ "start": 0,
+ "duration": 363.0,
+ "layout": {
+  "a_name": [
+   0.34,
+   0.88,
+   0.401,
+   0.918
+  ],
+  "a": [
+   0.41,
+   0.872,
+   0.462,
+   0.926
+  ],
+  "clock": [
+   0.477,
+   0.882,
+   0.526,
+   0.911
+  ],
+  "period": [
+   0.482,
+   0.917,
+   0.507,
+   0.946
+  ],
+  "b": [
+   0.54,
+   0.872,
+   0.59,
+   0.926
+  ],
+  "b_name": [
+   0.599,
+   0.88,
+   0.662,
+   0.918
+  ]
+ },
+ "teams": [
+  "BAL",
+  "BUF"
+ ],
+ "roster": "Baltimore Ravens|team|Ravens,Baltimore\nLamar Jackson|person|Lamar,Jackson\nDerrick Henry|person|Henry\nZay Flowers|person|Flowers,Zay\nMark Andrews|person|Andrews\nDeAndre Hopkins|person|Hopkins,Nuk\nRashod Bateman|person|Bateman\nTyler Loop|person|Loop\nJohn Harbaugh|person|Harbaugh\nBuffalo Bills|team|Bills,Buffalo\nJosh Allen|person|Allen\nJames Cook|person|Cook\nKhalil Shakir|person|Shakir\nKeon Coleman|person|Coleman\nDalton Kincaid|person|Kincaid\nDawson Knox|person|Knox\nMatt Prater|person|Prater\nSean McDermott|person|McDermott",
+ "board_changes": [
+  {
+   "t": 1,
+   "score": [
+    40,
+    38
+   ]
+  },
+  {
+   "t": 313,
+   "score": [
+    40,
+    41
+   ]
+  }
+ ],
+ "broadcaster": "NBC"
+}

@@ -1,0 +1,59 @@
+{
+ "id": "soccer_ars_avl",
+ "sport": "soccer",
+ "title": "Arsenal v Aston Villa",
+ "subtitle": "Arsenal pull away: three goals in the second half",
+ "start": 0,
+ "duration": 330,
+ "layout": {
+  "a_name": [
+   0.066,
+   0.068,
+   0.108,
+   0.11
+  ],
+  "score": [
+   0.13,
+   0.065,
+   0.2,
+   0.112
+  ],
+  "b_name": [
+   0.213,
+   0.068,
+   0.258,
+   0.11
+  ],
+  "clock": [
+   0.3,
+   0.065,
+   0.37,
+   0.112
+  ]
+ },
+ "roster": "# Arsenal v Aston Villa (Premier League)\nArsenal|team|Gunners\nAston Villa|team|Villa\nDavid Raya|person|Raya\nWilliam Saliba|person|Saliba\nGabriel Magalhaes|person|Magalhaes\nJurrien Timber|person|Timber\nRiccardo Calafiori|person|Calafiori\nBen White|person|White\nPiero Hincapie|person|Hincapie\nDeclan Rice|person|Rice\nMartin Odegaard|person|Odegaard\nMartin Zubimendi|person|Zubimendi\nMikel Merino|person|Merino\nBukayo Saka|person|Saka\nNoni Madueke|person|Madueke\nViktor Gyokeres|person|Gyokeres\nLeandro Trossard|person|Trossard\nGabriel Martinelli|person|Martinelli\nKai Havertz|person|Havertz\nEberechi Eze|person|Eze\nMyles Lewis-Skelly|person|Lewis-Skelly\nEthan Nwaneri|person|Nwaneri\nMikel Arteta|person|Arteta\nEmiliano Martinez|person|Martinez\nEzri Konsa|person|Konsa\nPau Torres|person|Torres\nLucas Digne|person|Digne\nMatty Cash|person|Cash\nBoubacar Kamara|person|Kamara\nYouri Tielemans|person|Tielemans\nJohn McGinn|person|McGinn\nMorgan Rogers|person|Rogers\nOllie Watkins|person|Watkins\nLeon Bailey|person|Bailey\nEmiliano Buendia|person|Buendia\nAmadou Onana|person|Onana\nIan Maatsen|person|Maatsen\nTyrone Mings|person|Mings\nJadon Sancho|person|Sancho\nHarvey Elliott|person|Elliott\nEvann Guessand|person|Guessand\nUnai Emery|person|Emery",
+ "board_changes": [
+  {
+   "t": 48,
+   "score": [
+    1,
+    0
+   ]
+  },
+  {
+   "t": 130,
+   "score": [
+    2,
+    0
+   ]
+  },
+  {
+   "t": 286,
+   "score": [
+    3,
+    0
+   ]
+  }
+ ],
+ "broadcaster": "NBC Sports (Premier League)"
+}

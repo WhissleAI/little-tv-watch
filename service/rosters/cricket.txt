@@ -1,0 +1,28 @@
+# Australia v India (Border-Gavaskar Trophy)
+Australia|team|Aussies
+India|team|Indians
+Border-Gavaskar Trophy|other|Border Gavaskar
+Jasprit Bumrah|person|Bumrah,Boom
+Sam Konstas|person|Konstas
+Usman Khawaja|person|Khawaja,Uzzie
+Virat Kohli|person|Kohli,Virat
+Rohit Sharma|person|Rohit
+Shubman Gill|person|Gill
+Yashasvi Jaiswal|person|Jaiswal
+Rishabh Pant|person|Pant
+Mohammed Siraj|person|Siraj
+Ravindra Jadeja|person|Jadeja
+Nitish Kumar Reddy|person|Nitish Reddy
+Washington Sundar|person|Sundar
+Prasidh Krishna|person|Prasidh
+KL Rahul|person|Rahul
+Pat Cummins|person|Cummins
+Mitchell Starc|person|Starc
+Scott Boland|person|Boland
+Nathan Lyon|person|Lyon
+Steve Smith|person|Smith
+Travis Head|person|Head
+Marnus Labuschagne|person|Labuschagne,Marnus
+Alex Carey|person|Carey
+Beau Webster|person|Webster
+Sydney Cricket Ground|place|SCG,Sydney

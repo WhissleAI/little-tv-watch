@@ -1,0 +1,34 @@
+{
+ "id": "soccer_che_mun",
+ "sport": "soccer",
+ "title": "Chelsea v Manchester United",
+ "subtitle": "Two goals at Stamford Bridge",
+ "start": 0,
+ "duration": 307,
+ "layout": {
+  "score": [
+   0.176,
+   0.075,
+   0.222,
+   0.109
+  ]
+ },
+ "roster": "# Chelsea v Manchester United (Premier League)\nChelsea|team|Blues\nManchester United|team|Man United,United\nRobert Sanchez|person|Sanchez\nReece James|person|James\nLevi Colwill|person|Colwill\nWesley Fofana|person|Fofana\nTrevoh Chalobah|person|Chalobah\nMarc Cucurella|person|Cucurella\nMalo Gusto|person|Gusto\nMoises Caicedo|person|Caicedo\nEnzo Fernandez|person|Fernandez\nRomeo Lavia|person|Lavia\nCole Palmer|person|Palmer\nPedro Neto|person|Neto\nJoao Pedro|person|Pedro\nLiam Delap|person|Delap\nEstevao|person|\nAlejandro Garnacho|person|Garnacho\nJamie Gittens|person|Gittens\nEnzo Maresca|person|Maresca\nSenne Lammens|person|Lammens\nAndre Onana|person|Onana\nMatthijs de Ligt|person|Ligt\nHarry Maguire|person|Maguire\nLeny Yoro|person|Yoro\nLuke Shaw|person|Shaw\nDiogo Dalot|person|Dalot\nNoussair Mazraoui|person|Mazraoui\nCasemiro|person|\nBruno Fernandes|person|Fernandes\nKobbie Mainoo|person|Mainoo\nManuel Ugarte|person|Ugarte\nBryan Mbeumo|person|Mbeumo\nMatheus Cunha|person|Cunha\nBenjamin Sesko|person|Sesko\nAmad Diallo|person|Diallo\nPatrick Dorgu|person|Dorgu\nRuben Amorim|person|Amorim",
+ "board_changes": [
+  {
+   "t": 67,
+   "score": [
+    1,
+    0
+   ]
+  },
+  {
+   "t": 184,
+   "score": [
+    2,
+    0
+   ]
+  }
+ ],
+ "broadcaster": "Premier League (Chelsea FC extended highlights)"
+}
