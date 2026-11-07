@@ -32,7 +32,10 @@ export class ArcLocal {
         if (m.type === "rec") onRecord(m.rec);
         else if (m.type === "ready" && !ready) { ready = new ArcLocal(w, m.mode, m.threads, m.loadMs); resolve(ready); }
         else if (m.type === "error") { console.log(`[arclocal] ${m.message}`); if (!ready) reject(new Error(m.message)); }
+        else if (m.type === "log") console.log(`[arclocal] ${m.text}`);
       };
+      // a worker that can't load at all (script, import, memory) never posts an error of its own
+      w.onerror = e => { console.log(`[arclocal] worker failed: ${e.message || e.type}`); if (!ready) reject(new Error(e.message || "worker failed")); };
       let ready: ArcLocal | null = null;
       w.postMessage({ type: "open", ...opts });
     });

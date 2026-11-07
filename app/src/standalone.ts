@@ -27,6 +27,7 @@ function chip(text: string) {
 
 // Arc as the engine wants it, while the real one loads: the latest config is kept and applied once it's ready, audio
 // before then is dropped (the first seconds of a game), and a spoken question gets its own one-shot Arc.
+const LIGHT = { partialMs: Number(q.get("pms") ?? 2500), partialWindow: Number(q.get("pwin") ?? 5) };
 class ArcProxy implements ArcSink {
   real: ArcLocal | null = null;
   cfg: ArcConfig | null = null;
@@ -39,7 +40,9 @@ class ArcProxy implements ArcSink {
     if (this.cfg) this.restart(this.cfg);
     if (this.ctx) a.setContext(this.ctx);
   }
-  opts(c: ArcConfig) { return { domain: c.domain, names: c.names, bias: c.bias.join("\n"), frameFloor: 0.2 }; }
+  // on a TV, live captions every 2.5 s over a 5 s window (the Mac does 1 s over 7 s): the re-decodes are most of Arc's
+  // work, and a TV core is several times slower; finished lines are unchanged
+  opts(c: ArcConfig) { return { domain: c.domain, names: c.names, bias: c.bias.join("\n"), frameFloor: 0.2, ...LIGHT }; }
   restart(c: ArcConfig) {
     this.cfg = c;
     this.pushedS = this.heardS = 0;
@@ -68,9 +71,19 @@ class ArcProxy implements ArcSink {
 }
 
 async function boot() {
-  if (q.has("local")) store.set("tvw.mode", null);   // ?local clears an earlier fallback
-  const wantTV = (q.has("local") || !loopback) && !q.has("mac") && store.get("tvw.mode") !== "mac";
-  if (!wantTV) { chip("Arc on the Mac"); return; }
+  store.set("tvw.mode", null);   // (an older build kept the Mac fallback for good: forget it)
+  let fellBack = false;
+  try { fellBack = sessionStorage.getItem("tvw.fallback") === "1" && !q.has("local"); } catch { /* */ }
+  // Arc on this TV is opt-in (?local or tvw.arc=tv): measured on a Little TV it runs ~3x slower than real time on
+  // the one thread its app browser allows (no cross-origin isolation there), so by default Arc stays on the Mac and the
+  // TV keeps what it does well: the cached demos, the scoreboard (little OCR), the screen and the assistant.
+  void fellBack; void loopback;
+  const wantTV = (q.has("local") || store.get("tvw.arc") === "tv") && !q.has("mac");
+  if (!wantTV) {
+    chip("Arc on the Mac");
+    void preload().then(() => chip("Arc on the Mac · Ready ✓"));   // demos and glyphs come from this TV's cache all the same
+    return;
+  }
   console.log(`[standalone] ${navigator.userAgent} · isolated=${self.crossOriginIsolated} · cores=${navigator.hardwareConcurrency}`);
   const { createDefaultEngine, createLocalBackend, installLocalBackend, loadDirector } = await import("./engine/local");
   const arc = new ArcProxy();
@@ -83,32 +96,39 @@ async function boot() {
   engine.start();
   arcWhere = "tv";
   chip("Arc on this TV · loading…");
+  // a TV may only keep the cache for good after the viewer has used the app: ask again on the first key press
+  document.addEventListener("keydown", () => { void navigator.storage?.persist?.().then(p => console.log(`[standalone] storage persisted: ${p}`)); }, { once: true });
   (window as unknown as { tvwEngine: unknown }).tvwEngine = engine;   // for the console
 
   // the heavy parts load behind the first screen; the preloader fills the cache with them (and the demos) first
   void preload().finally(async () => {
+    await startArc();
     import("./tagger").then(m => m.loadPageTagger()).then(t => { (engine as unknown as { tagger: unknown }).tagger = t; console.log("[standalone] tagger ready"); })
       .catch(e => console.log(`[standalone] tagger unavailable: ${e}`));
     loadDirector().then(d => { (engine as unknown as { director: unknown }).director = d; console.log("[standalone] director ready"); })
       .catch(e => console.log(`[standalone] director unavailable: ${e}`));
+  });
+  async function startArc() {
     try {
       const threads = self.crossOriginIsolated ? Math.min(3, Math.max(1, (navigator.hardwareConcurrency || 2) - 1)) : 1;
       const t0 = performance.now();
-      const real = await ArcLocal.start({ domain: arc.cfg?.domain ?? "nba", names: arc.cfg?.names ?? "", threads, frameFloor: 0.2 },
+      // never wait on Arc for long: 20 s without it ready and TV Watch goes back to the Mac
+      const limit = new Promise<never>((_, no) => setTimeout(() => no(new Error("not ready within 20 s")), 20000));
+      const real = await Promise.race([limit, ArcLocal.start({ domain: arc.cfg?.domain ?? "nba", names: arc.cfg?.names ?? "", threads, frameFloor: 0.2, ...LIGHT },
         (r: ArcRecord) => {
           const t = Number((r as Rec).t ?? 0);
           if (t) arc.heardS = Math.max(arc.heardS, t);
           engine.handle(r as never);
-        });
+        })]);
       arc.attach(real);
       console.log(`[arc] ready on this TV: ${real.mode} ${real.threads} thread(s), loaded in ${Math.round(performance.now() - t0)} ms`);
-      chip(`Arc on this TV · ${real.threads > 1 ? `${real.threads} threads` : "1 thread"}`);
+      chip(`Arc on this TV · ${real.threads > 1 ? `${real.threads} threads` : "1 thread"} · Ready ✓`);
       watchSpeed(arc, real.threads);
     } catch (e) {
       console.log(`[arc] couldn't start on this TV (${e}); using the Mac`);
       fallBack("Arc couldn't start on this TV");
     }
-  });
+  }
 }
 
 // Real-time factor, measured as the game plays: Arc's lag behind the audio it was given. Falling further behind for
@@ -129,8 +149,8 @@ function watchSpeed(arc: ArcProxy, threads: number) {
 }
 
 function fallBack(why: string) {
-  console.log(`[standalone] ${why}: TV Watch will use the Mac`);
-  store.set("tvw.mode", "mac");
+  console.log(`[standalone] ${why}: TV Watch will use the Mac until the app is opened again`);
+  try { sessionStorage.setItem("tvw.fallback", "1"); } catch { /* */ }
   chip("Arc on the Mac");
   setTimeout(() => location.reload(), 1500);
 }

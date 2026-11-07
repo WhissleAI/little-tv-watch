@@ -587,6 +587,8 @@ function stopAll() {
   }
   root.classList.remove("playing", "listening");
 }
+// stutter, logged: a cached demo should never wait on the network
+for (const ev of ["waiting", "stalled"]) video.addEventListener(ev, () => console.log(`[tvwatch] video ${ev} at ${video.currentTime.toFixed(1)} s (${video.currentSrc.split("/").pop()})`));
 video.addEventListener("ended", () => { stopAll(); app.emit("clip_ended", { sport }); });
 
 // The broadcast's scoreboard, read off the clip: Arc's service takes it as the truth for score and clock.
