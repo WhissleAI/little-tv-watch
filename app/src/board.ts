@@ -4,8 +4,8 @@ import { grey, recognize, type Templates } from "./glyphs";
 // The broadcast's own score graphic, read off the video about once a second. Each field (a score, a team, the
 // clock) is its own box. Fields are read by little OCR (glyphs.ts): per-broadcaster character templates, about 1.5 ms
 // for a whole board on a laptop, so the TV keeps up (Tesseract took ~20 s a board on the TV). Over the demo clips'
-// verified score timelines it finds 122 of 148 changes against 82 for the Tesseract path (Nov 7,
-// ocr/glyphs/lo.mjs). Boxes are fractions of the frame, per broadcaster.
+// verified score timelines it finds 122 of 148 changes against 82 for the Tesseract path (Nov 7).
+// Boxes are fractions of the frame, per broadcaster.
 type Box = [number, number, number, number];
 export const LAYOUTS: Record<string, Record<string, Box>> = {
   nba: { a_name: [0.313, 0.885, 0.352, 0.925], a: [0.385, 0.882, 0.448, 0.928], b_name: [0.453, 0.885, 0.492, 0.925],
@@ -35,7 +35,7 @@ function ocr() {
 }
 
 // The templates: per broadcaster layout (keyed by its boxes), with the threshold method each field reads best with,
-// and per sport for broadcasts we haven't learned.
+// and per sport for broadcasts without their own layout.
 type GlyphSet = { chars: Templates; cuts: Record<string, 0 | 1 | 2> };
 let glyphs: { byLayout: Record<string, GlyphSet>; sports: Record<string, Templates> } | null = null;
 const glyphsReady = fetch(new URL("glyphs/templates.json", location.href).href).then(r => r.json()).then(j => { glyphs = j; })
@@ -99,7 +99,7 @@ async function read(video: HTMLVideoElement, layout: Record<string, Box>, sport:
   const got: Record<string, string> = {}, conf: Record<string, number> = {}, missed: string[] = [];
   // one copy off the video for the whole board (each copy is a slow GPU readback on the TV), then each field's pixels
   const boxes = Object.entries(layout).filter(([k]) => !skip.has(k)).map(([k, [x0, y0, x1, y1]]) => {
-    // the same pixels the templates were learned from (ocr/glyphs/extract.mjs rect())
+    // the same pixels the templates expect
     const m = k === "a" || k === "b" ? 0.006 * W : 0;
     const sx = Math.max(0, Math.round(x0 * W - m)), sy = Math.round(y0 * H);
     return { k, sx, sy, sw: Math.max(4, Math.min(W - sx, Math.round((x1 - x0) * W + 2 * m))), sh: Math.max(4, Math.min(H - sy, Math.round((y1 - y0) * H))) };

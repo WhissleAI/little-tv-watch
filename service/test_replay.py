@@ -13,7 +13,7 @@ class A:
 
 
 t.ARGS = A
-t.TELE["f"] = open(os.devnull, "w")   # tests don't write training sessions
+t.TELE["f"] = open(os.devnull, "w")   # tests don't write session files
 _rules = t.load_rules
 t.load_rules = lambda: _rules() + [{"id": "curry", "type": "name", "name": "Stephen Curry", "cooldown_s": 120}]
 t.roster_forms = lambda: set()   # the clip is Warriors-Lakers, not tonight's Knicks-Spurs roster

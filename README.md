@@ -35,10 +35,10 @@ It works on recorded games, on YouTube games, and on whatever the TV's microphon
 
 | Part | Where | What it does |
 |---|---|---|
-| **Arc transcriber** | `service/` (native) or `arc-wasm/` (WebAssembly in a Web Worker) | Streaming speech recognition with inline tags: people, teams, numbers, scores, clocks, plus per-frame event heads. |
-| **Arc Tagger** | `app/src/tagger.ts` (ONNX Runtime Web) | Tags each finished sentence: entities, score spans, sports events, intents. |
-| **little OCR** | `app/src/board.ts`, `app/src/glyphs.ts`, `ocr/` | Reads the broadcast's scoreboard. Each field (scores, clock, period) is its own box per broadcaster, read with tiny glyph templates learned from Tesseract-labelled crops. Majority rules per side: a score only goes up, by at most one play, and needs repeated reads; corrections are silent. |
-| **Director** | `director/`, `app/src/director3.ts` | A small streaming Mamba-3 model (under 500k parameters) that calls scoring events from audio and commentary when no scoreboard is visible (YouTube or mic mode). Trained with scoreboard changes as labels. |
+| **[Arc transcriber](https://github.com/WhissleAI/arc_transcriber)** | `service/` (native) or `arc-wasm/` (WebAssembly in a Web Worker) | Streaming speech recognition with inline tags: people, teams, numbers, scores, clocks, plus per-frame event heads. |
+| **[Arc Tagger](https://huggingface.co/WhissleAI/arc-tagger)** | `app/src/tagger.ts` (ONNX Runtime Web) | Tags each finished sentence: entities, score spans, sports events, intents. |
+| **little OCR** | `app/src/board.ts`, `app/src/glyphs.ts` | Reads the broadcast's scoreboard. Each field (scores, clock, period) is its own box per broadcaster, read with tiny glyph templates. Majority rules per side: a score only goes up, by at most one play, and needs repeated reads; corrections are silent. |
+| **Director** | `app/src/director3.ts` | A small streaming Mamba-3 model (under 500k parameters) that calls scoring events from audio and commentary when no scoreboard is visible (YouTube or mic mode). |
 | **Engine** | `service/tvwatch.py`, `app/src/engine/` | Fusion: the scoreboard owns the score and clock, Arc says who did it. Rules, sessions (one game, one memory), game facts and catch-up, profanity masking. |
 | **Little integration** | `app/public/little/manifest.json`, `app/src/main.ts`, `app/server/answers.ts` | 11 tools the TV's assistant calls (`play_demo`, `watch_player`, `ask_game`, `catch_up`, `highlights`, `watch_youtube`, `seek`, …). Answers for when the app is closed (score, catch-up, game facts). `voice.say` call-outs. The game audio turns down while anyone talks. Recaps and answers are written by Little's own model (`app.compose`). |
 | **Phone companion** | `android/` | Optional Android app that follows the same service and pushes alerts. |
@@ -83,11 +83,14 @@ little dev --device den
 ## Models and clips
 
 This repository contains code only:
-- **Arc, Arc Tagger and the director:** the weights, and libarc for `arc-wasm/`, are not included. Contact
-  WhissleAI.
+- **Arc:** code and weights are in [WhissleAI/arc_transcriber](https://github.com/WhissleAI/arc_transcriber) and
+  [WhissleAI/arc-v1.1](https://huggingface.co/WhissleAI/arc-v1.1). libarc for `arc-wasm/` is not included.
+- **Arc Tagger:** the model is [WhissleAI/arc-tagger](https://huggingface.co/WhissleAI/arc-tagger). The C API is
+  `WhissleAI/arc-tagger-c` (private; ask WhissleAI for access).
+- **Director weights:** not included. Contact WhissleAI.
 - **Game clips:** bring your own, legally obtained. `ocr/catalog/*.json` holds the metadata the app expects:
   scoreboard layout, teams, roster and verified score changes. `ocr/build_catalog.py` builds the catalog from it.
-- **OCR glyph templates:** rebuild with `ocr/glyphs/extract.mjs <clip-id>`, then `node ocr/glyphs/lo.mjs build`.
+- **OCR glyph templates:** not included. Contact WhissleAI.
 - **Tesseract language data:** download `eng.traineddata.gz` into `app/public/tess/`.
 
 ## Layout
@@ -96,9 +99,17 @@ This repository contains code only:
 app/        the Little TV app (TypeScript, Vite) + answers server
 service/    tvwatch.py: Arc + scoreboard fusion, rules, sessions (Python); tests in test_replay.py
 arc-wasm/   Arc in WebAssembly (wrapper + build script; libarc separately)
-director/   the Mamba-3 director: features, training, export, parity
-ocr/        little OCR training tools, scoreboard eval, catalog metadata
+ocr/        catalog metadata and scoreboard layouts
 android/    phone companion
 ```
 
-See [DEMO.md](DEMO.md) for a 3-minute demo script. Licence: see [LICENSE.md](LICENSE.md).
+See [DEMO.md](DEMO.md) for a 3-minute demo script. 
+
+## Ownership and licence
+
+Whissle Inc. (WhissleAI) owns the underlying models and technology, including Arc, Arc Tagger and the director. The
+exceptions are the application design and any optimization made specifically for the Little platform.
+
+Whissle's code here, including inference code, is licensed for **non-commercial use only** (CC BY-NC 4.0 plus the
+Whissle terms). Commercial use needs a separate written licence: ksingla@whissle.ai. This repository holds application
+and inference code only; it does not include model training code. See [LICENSE.md](LICENSE.md).

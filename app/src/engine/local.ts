@@ -138,7 +138,7 @@ export async function createDefaultEngine(parts: { arc?: ArcSink; tagger?: Tagge
   return engine;
 }
 
-/** the director (director/v2: the Mamba-3 over Arc's streams) as the engine wants it: features in, a call per second */
+/** the director (the Mamba-3 over Arc's streams) as the engine wants it: features in, a call per second */
 export async function loadDirector(url = "director/director3.json"): Promise<DirectorLike> {
   const { Director3, Features3 } = await import("../director3.ts");
   const model = await Director3.load(url);

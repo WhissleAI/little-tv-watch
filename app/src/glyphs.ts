@@ -1,14 +1,12 @@
 // Little OCR: a scoreboard reader small enough for the TV. A broadcaster's score graphic uses one typeface, so each
-// character is matched against templates learned from that broadcast (labelled by Tesseract offline, see
-// ocr/glyphs/train.mjs) instead of running a general OCR engine: a field is a few hundred
-// pixels and a dozen correlations, well under a millisecond on a laptop. Pure functions, no DOM: the trainer runs the
-// very same code in Node.
+// character is matched against templates for that broadcast instead of running a general OCR engine: a field is a few
+// hundred pixels and a dozen correlations, well under a millisecond on a laptop. Pure functions, no DOM.
 
 export const GW = 12, GH = 20;   // a glyph is compared at 12x20
 
 export type Glyph = { x0: number; x1: number; y0: number; y1: number; v: Float32Array; parts: number; hr: number; wr: number };
 export type Templates = Record<string, number[][]>;   // char -> mean glyphs (one or more), each GW*GH values in 0..1
-// How a field is cut into glyphs, learned per broadcaster and field: which side is ink (`flip`: light ink on dark)
+// How a field is cut into glyphs, set per broadcaster and field: which side is ink (`flip`: light ink on dark)
 // and the threshold (0: Otsu over the whole cell, 1: Otsu over its middle, 2: halfway between ink and paper).
 // Without one (a broadcast we haven't seen), the cell decides for itself.
 export type Cut = { flip: boolean; thr: 0 | 1 | 2 };
@@ -91,7 +89,7 @@ export function lightInk(g0: Float32Array, w: number, h: number) {
 
 export function segment(g0: Float32Array, w: number, h: number, cut?: Cut): Glyph[] {
   // The background is the cell's most common level (paper, wherever its edges are); ink is whichever side of it the
-  // other pixels mostly sit, unless this broadcaster's field has a learned cut.
+  // other pixels mostly sit, unless this broadcaster's field has its own cut.
   const mx = Math.floor(0.08 * w), my = Math.floor(0.08 * h), mid: number[] = [], hist = new Float64Array(16);
   for (let y = my; y < h - my; y++) for (let x = mx; x < w - mx; x++) {
     const v = g0[y * w + x];

@@ -48,8 +48,7 @@ const JUMPS: Record<string, Record<number, string>> = {
   nfl: { 6: "🏈 Touchdown!", 7: "🏈 Touchdown!", 8: "🏈 Touchdown!", 3: "Field goal", 1: "Extra point", 2: "Safety / two points" },
   nhl: { 1: "🚨 Goal!" }, soccer: { 1: "⚽ Goal!" }, esports: {} };
 const OCR_FRESH_S = 30, CLOCK_STALE_S = 90;
-// The director, heard not confirmed: NBA only (the one sport it was validated on), at the training-chosen operating
-// point (held-out games: recall 0.77, precision 0.73; director/v2/README.md), one call per 10 s.
+// The director, heard not confirmed: NBA only (the one sport it was validated on), one call per 10 s.
 const DIRECTOR_SPORTS: Record<string, number> = { nba: 0.95 };
 
 export type EngineOptions = {

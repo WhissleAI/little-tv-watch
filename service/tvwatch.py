@@ -1350,13 +1350,13 @@ def read_arc(arc):
         start_arc()
 
 
-# ---------------------------------------------------------------- telemetry (every stream, for the director model)
+# ---------------------------------------------------------------- telemetry (every stream)
 TELE = {"f": None}
 
 
 def tele(kind, data):
-    """one JSON line per record: Arc's frames, finals and events, the tagger, the scoreboard, alerts. Live demo
-    runs become training data for the director ($TVW_SESSIONS, default ./sessions)."""
+    """one JSON line per record: Arc's frames, finals and events, the tagger, the scoreboard, alerts. Written
+    locally to $TVW_SESSIONS (default ./sessions)."""
     try:
         if TELE["f"] is None:
             d = os.environ.get("TVW_SESSIONS", "sessions")

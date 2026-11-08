@@ -1,18 +1,17 @@
 // The TV Watch director, v2: the same model family as Steer's Director3 and Arc Tagger. One small streaming Mamba-3
 // over Arc's streams, stepping once a second with constant memory (the state is carried across ticks), several heads
 // read out every step: a scoring event now (per sport), its kind (one point / score / big score) and which side.
-// Taught by the scoreboard: on broadcasts the board OCR's confirmed changes are the labels, so with no picture (mic
-// mode) the director still calls baskets and goals from what Arc hears. Plain TypeScript, no dependencies; the
-// recurrence is Mamba3Layer.step() from Arc's vendored mamba3/layer.py, line for line.
+// With no picture (mic mode) the director still calls baskets and goals from what Arc hears. Plain TypeScript, no
+// dependencies.
 //
-// Input each second (Features3 builds it exactly as director/v2/feats2.py did for training):
+// Input each second (built by Features3):
 //   arc:<head>  max over the second of each Arc frame head, kept when >= frame_floor (arc_tv --frames)
 //   arc:speech  mean speech probability of those frames
 //   txt:*       the newest Arc line this second (partial or final): log1p(words, persons, score tags, numbers, clock
 //               tags), and 1 if it was a final
 //   tag:*       Arc Tagger on finals: event.sports.* max p, log1p(score spans), log1p(person spans)
 //   tokens      the newest line's last 8 words as unigrams + bigrams, FNV-1a("p:"|"f:" + token) % V
-// Weights, feature names and per-sport thresholds: public/director/director3.json (eval: director/v2/README.md).
+// Weights, feature names and per-sport thresholds: public/director/director3.json.
 
 type Mat = number[][];
 type Vec = number[];
@@ -175,7 +174,7 @@ export class Director3 {
   }
 }
 
-// Builds one second of inputs from the app's live streams, as feats2.py did from Arc's records.
+// Builds one second of inputs from the app's live streams.
 const WORD = /[a-z0-9']+/g;
 export class Features3 {
   private ix: Map<string, number>;

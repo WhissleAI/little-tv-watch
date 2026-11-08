@@ -1,9 +1,8 @@
 // The director: a tiny causal GRU that calls scoring events (a basket, a goal, a touchdown, a three) from what Arc
-// hears, with no scoreboard needed. It was taught by the scoreboard: on broadcast clips, every change the app's board
-// OCR confirms (board.ts rules) is a labelled event, and the model learns to fire from Arc's own streams in the band
-// around it. That makes mic-only mode (no picture) call events, and lets the board and the audio agree when both exist.
+// hears, with no scoreboard needed. That makes mic-only mode (no picture) call events, and lets the board and the audio
+// agree when both exist.
 //
-// Input, once a second, built by Features below exactly as the training script (director/feats.py) built it:
+// Input, once a second, built by Features below:
 //   arc:<label>   max over the second of each Arc frame head probability (arc_tv --frames; ARC_FRAMES_ALL x: heads too)
 //   arc:speech    mean speech probability of those frames
 //   txt:*         from Arc finals EMITTED in this second: log1p(words, person tags, NUMBER_SCORE, NUMBER*, NUMBER_CLOCK)
@@ -12,8 +11,8 @@
 //                 plus log1p(score spans) and log1p(person spans)
 //   sport:<s>     one-hot nba / nfl / nhl / soccer / cricket
 // Output: p = P(a scoring event's board change lands within (now-5 s, now+4 s]) and the kind (one point / a score /
-// a big score: a three or a field goal). fire = p over the trained threshold, at most once every 10 s.
-// Weights and the feature list: public/director/director.json (eval numbers in director/README.md).
+// a big score: a three or a field goal). fire = p over the model's threshold, at most once every 10 s.
+// Weights and the feature list: public/director/director.json.
 
 export type DirectorFile = {
   sports_validated: string[]; frame_floor: number; x_heads: boolean;
@@ -96,10 +95,7 @@ export class ArcHead {
 }
 
 // The call the app should make: Arc's head OR the director, at most one every 10 s (wall seconds you pass in).
-// Leave-one-clip-out on 9 broadcast clips (80 board-labelled events, director/README.md): the union gets precision
-// 0.53, recall 0.51, 0.31 false alarms a minute, against Arc's head alone at 0.77 / 0.29 / 0.06. On NBA (58 events)
-// the union is 0.63 / 0.57 against 0.78 / 0.31; NHL, NFL, soccer and cricket have too few events to learn yet, so
-// use the director only where sports_validated says (nba) and Arc's head alone elsewhere.
+// Use the director only where sports_validated says (nba) and Arc's head alone elsewhere.
 export class ScoreCaller {
   private last = -1e9;
   constructor(readonly m: DirectorFile) {}
@@ -123,7 +119,7 @@ export class Features {
   private sp = 0;
   private n = 0;
   // floor: the model's frame_floor; heads under it count as 0 and a frame with none over it is skipped, as arc_tv
-  // --frames <floor> would (feats.py does the same), so any Arc setting gives the features the model was trained on
+  // --frames <floor> would, so any Arc setting gives the features the model expects
   constructor(readonly names: string[], readonly floor = 0.2) {
     this.ix = new Map(names.map((n, i) => [n, i]));
     this.x = new Float32Array(names.length);
