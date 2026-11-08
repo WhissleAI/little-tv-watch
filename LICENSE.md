@@ -27,7 +27,9 @@ this app uses and the third-party components listed in the NOTICE file of each m
 
 The Whissle-owned code in this repository, including all inference code, is licensed under the Creative Commons
 Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0), reproduced below, and the Whissle terms in this
-file. **Non-commercial use only.** Model weights are not in this repository; each model repository states its own licence.
+file. **Non-commercial use only.** Model weights are not in this repository. The director, Arc and Arc Tagger files the
+app needs are in the gated [WhissleAI/tv-watch-assets](https://huggingface.co/WhissleAI/tv-watch-assets), which states
+its own licence.
 
 This repository holds application and inference code only. Model training code is not part of it and is not licensed
 by this file.

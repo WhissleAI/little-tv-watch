@@ -1,5 +1,7 @@
 # TV Watch
 
+**[Watch the demo](https://whissleai.github.io/little-tv-watch/)**
+
 A game companion for the [Little](https://little.co) TV. **Arc** listens to the game and the app reads the
 broadcast's own scoreboard. You get:
 
@@ -38,7 +40,7 @@ It works on recorded games, on YouTube games, and on whatever the TV's microphon
 | **[Arc transcriber](https://github.com/WhissleAI/arc_transcriber)** | `service/` (native) or `arc-wasm/` (WebAssembly in a Web Worker) | Streaming speech recognition with inline tags: people, teams, numbers, scores, clocks, plus per-frame event heads. |
 | **[Arc Tagger](https://huggingface.co/WhissleAI/arc-tagger)** | `app/src/tagger.ts` (ONNX Runtime Web) | Tags each finished sentence: entities, score spans, sports events, intents. |
 | **little OCR** | `app/src/board.ts`, `app/src/glyphs.ts` | Reads the broadcast's scoreboard. Each field (scores, clock, period) is its own box per broadcaster, read with tiny glyph templates. Majority rules per side: a score only goes up, by at most one play, and needs repeated reads; corrections are silent. |
-| **Director** | `app/src/director3.ts` | A small streaming Mamba-3 model (under 500k parameters) that calls scoring events from audio and commentary when no scoreboard is visible (YouTube or mic mode). |
+| **Director** | `app/src/director3.ts` | A small streaming neural model (under 500k parameters) that calls scoring events from audio and commentary when no scoreboard is visible (YouTube or mic mode). |
 | **Engine** | `service/tvwatch.py`, `app/src/engine/` | Fusion: the scoreboard owns the score and clock, Arc says who did it. Rules, sessions (one game, one memory), game facts and catch-up, profanity masking. |
 | **Little integration** | `app/public/little/manifest.json`, `app/src/main.ts`, `app/server/answers.ts` | 11 tools the TV's assistant calls (`play_demo`, `watch_player`, `ask_game`, `catch_up`, `highlights`, `watch_youtube`, `seek`, …). Answers for when the app is closed (score, catch-up, game facts). `voice.say` call-outs. The game audio turns down while anyone talks. Recaps and answers are written by Little's own model (`app.compose`). |
 | **Phone companion** | `android/` | Optional Android app that follows the same service and pushes alerts. |
@@ -60,7 +62,7 @@ You need:
 - the Little CLI (`@kabletv/little-cli`, on GitHub Packages; `NODE_AUTH_TOKEN` must be a GitHub token with
   `read:packages`);
 - a Little developer account;
-- the Arc model and runtime (see **Models and clips**).
+- the models and runtime files (see **Models and clips**: `./fetch_assets.sh`).
 
 ```sh
 # 1. the service (Arc + fusion), on the machine beside the TV
@@ -82,16 +84,22 @@ little dev --device den
 
 ## Models and clips
 
-This repository contains code only:
-- **Arc:** code and weights are in [WhissleAI/arc_transcriber](https://github.com/WhissleAI/arc_transcriber) and
-  [WhissleAI/arc-v1.1](https://huggingface.co/WhissleAI/arc-v1.1). libarc for `arc-wasm/` is not included.
-- **Arc Tagger:** the model is [WhissleAI/arc-tagger](https://huggingface.co/WhissleAI/arc-tagger). The C API is
+This repository contains code only. The models and runtime files are in a gated Hugging Face repository,
+[WhissleAI/tv-watch-assets](https://huggingface.co/WhissleAI/tv-watch-assets). Accept the licence there once, then:
+
+```sh
+hf auth login
+./fetch_assets.sh     # downloads the director, Arc, Arc Tagger, OCR templates and web runtimes into app/public/
+```
+
+- **Arc:** source and full models are in [WhissleAI/arc_transcriber](https://github.com/WhissleAI/arc_transcriber) and
+  [WhissleAI/arc-v1.1](https://huggingface.co/WhissleAI/arc-v1.1).
+- **Arc Tagger:** the model card is [WhissleAI/arc-tagger](https://huggingface.co/WhissleAI/arc-tagger). The C API is
   `WhissleAI/arc-tagger-c` (private; ask WhissleAI for access).
-- **Director weights:** not included. Contact WhissleAI.
+- **libarc:** `service/` (the native path) and rebuilding `arc-wasm/` need libarc. Ask WhissleAI for access. The
+  WebAssembly build is already in the assets.
 - **Game clips:** bring your own, legally obtained. `ocr/catalog/*.json` holds the metadata the app expects:
   scoreboard layout, teams, roster and verified score changes. `ocr/build_catalog.py` builds the catalog from it.
-- **OCR glyph templates:** not included. Contact WhissleAI.
-- **Tesseract language data:** download `eng.traineddata.gz` into `app/public/tess/`.
 
 ## Layout
 
