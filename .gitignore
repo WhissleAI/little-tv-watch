@@ -15,7 +15,6 @@ models/
 *.safetensors
 *.wasm
 arc-wasm/arc_*.mjs
-ocr/glyphs/data/
 app/public/catalog
 app/public/clips
 app/public/demos
