@@ -1,4 +1,4 @@
-// The TV Watch director, v2: the same model family as Steer's Director3 and Arc Tagger. One small streaming Mamba-3
+// The TV Watch director: one small streaming neural model
 // over Arc's streams, stepping once a second with constant memory (the state is carried across ticks), several heads
 // read out every step: a scoring event now (per sport), its kind (one point / score / big score) and which side.
 // With no picture (mic mode) the director still calls baskets and goals from what Arc hears. Plain TypeScript, no
@@ -61,8 +61,8 @@ function layerNorm(x: ArrayLike<number>, w: Vec, b: Vec, eps = 1e-5) {
   return o;
 }
 
-// One Mamba-3 layer (rank 1), recurrent step: h_t = R_t(alpha h_{t-1} + beta B_{t-1}x_{t-1}^T) + gamma B_t x_t^T.
-class Mamba3Step {
+// One recurrent layer, one step.
+class RecurrentLayer {
   H: number; N: number; P: number;
   h: Float64Array; bx: Float64Array | null = null;
   constructor(private w: Record<string, any>, private pre: string, d: number, N: number, P: number) {
@@ -123,11 +123,11 @@ function fnv(s: string) {
 }
 
 export class Director3 {
-  private layers: Mamba3Step[];
+  private layers: RecurrentLayer[];
   private last = -1e9;
   private t = 0;
   constructor(readonly m: Director3File) {
-    this.layers = Array.from({ length: m.layers }, (_, i) => new Mamba3Step(m.weights, `blocks.${i}.`, m.d, m.d_state, m.head_dim));
+    this.layers = Array.from({ length: m.layers }, (_, i) => new RecurrentLayer(m.weights, `blocks.${i}.`, m.d, m.d_state, m.head_dim));
   }
   static async load(url = "director/director3.json") { return new Director3(await (await fetch(url)).json()); }
   reset() { this.layers.forEach(l => l.reset()); this.last = -1e9; this.t = 0; }

@@ -6,9 +6,11 @@ reels/
 sessions/
 models/
 *.mp4
+!docs/demo.mp4
 *.wav
 *.pcm
 *.jpg
+!docs/poster.jpg
 *.png
 *.pt
 *.onnx

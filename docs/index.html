@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TV Watch for Little</title>
+<meta name="description" content="A game companion for the Little TV: live captions, the real score, every scoring play called with who made it, and answers by voice.">
+<meta property="og:title" content="TV Watch for Little">
+<meta property="og:description" content="Arc listens to the game and the app reads the broadcast's own scoreboard.">
+<meta property="og:image" content="https://whissleai.github.io/little-tv-watch/poster.jpg">
+<style>
+:root{color-scheme:dark;--bg:#0b0d12;--panel:#151922;--line:#262c38;--text:#f2f4f8;--muted:#a3acbb;--accent:#6ea8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:980px;margin:0 auto;padding:56px 20px 64px}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.1;letter-spacing:-.02em;margin:0 0 14px}
+.lead{font-size:clamp(18px,2.4vw,21px);color:var(--muted);max-width:720px;margin:0 0 32px}
+video{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#000}
+.note{font-size:14px;color:var(--muted);margin:12px 0 44px}
+h2{font-size:22px;letter-spacing:-.01em;margin:0 0 16px}
+ul.features{list-style:none;padding:0;margin:0 0 44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+ul.features li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+ul.features b{display:block;margin-bottom:3px}
+ul.features span{color:var(--muted);font-size:15px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 36px}
+.links a{color:var(--text);text-decoration:none;border:1px solid var(--line);background:var(--panel);padding:10px 16px;border-radius:8px}
+.links a:hover,.links a:focus-visible{border-color:var(--accent)}
+footer{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+<h1>TV Watch for Little</h1>
+<p class="lead">Arc listens to the game and the app reads the broadcast's own scoreboard. You get live captions, the real score, and every scoring play called with who made it.</p>
+<video controls playsinline preload="metadata" poster="poster.jpg" src="demo.mp4">
+Your browser can't play this video. <a href="demo.mp4">Download it</a>.
+</video>
+<p class="note">Recorded live in the Little simulator. The viewer's voice is synthesized (Cartesia). Footage: Premier League, Arsenal v Bournemouth, demo use only.</p>
+<h2>What it does</h2>
+<ul class="features">
+<li><b>Live captions</b><span>Players and teams are highlighted as they're named.</span></li>
+<li><b>The real score</b><span>Score and clock are read from the broadcast's scoreboard.</span></li>
+<li><b>Every scoring play</b><span>Baskets, goals, touchdowns and wickets are called with the player who made them.</span></li>
+<li><b>Answers by voice</b><span>Ask the TV "who has scored the most?" or "what did I miss?"</span></li>
+<li><b>Highlights</b><span>Big moments are collected automatically, ready to replay.</span></li>
+<li><b>Watchlist</b><span>"Tell me whenever Wembanyama is mentioned."</span></li>
+</ul>
+<div class="links">
+<a href="https://github.com/WhissleAI/little-tv-watch">Code on GitHub</a>
+<a href="https://huggingface.co/WhissleAI/tv-watch-assets">Models on Hugging Face</a>
+<a href="https://github.com/WhissleAI/arc_transcriber">Arc Transcriber</a>
+<a href="https://huggingface.co/WhissleAI/arc-tagger">Arc Tagger</a>
+</div>
+<footer>Models and underlying technology by <a href="https://whissle.ai">Whissle</a>. Non-commercial use only: see the <a href="https://github.com/WhissleAI/little-tv-watch/blob/main/LICENSE.md">licence</a>. Commercial licences: ksingla@whissle.ai.</footer>
+</main>
+</body>
+</html>
